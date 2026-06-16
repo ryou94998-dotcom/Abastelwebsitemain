@@ -1,5 +1,5 @@
 /* ─── DESIGN TOKENS ─────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
 :root {
   --bg:        #F8F8F6;
@@ -11,8 +11,8 @@
   --accent-lt: #E6EFF8;
   --white:     #FFFFFF;
 
-  --f-display: 'Syne', sans-serif;
-  --f-body:    'Inter', sans-serif;
+  --f-display: 'Exo 2', sans-serif;
+  --f-body:    'DM Sans', sans-serif;
 
   --space-xs:  0.5rem;
   --space-s:   1rem;
@@ -85,29 +85,31 @@ ul { list-style: none; }
   font-family: var(--f-display);
   font-size: clamp(2.8rem, 6vw, 5.5rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
 }
 .display-lg {
   font-family: var(--f-display);
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 .display-md {
   font-family: var(--f-display);
   font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 700;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 .display-sm {
   font-family: var(--f-display);
   font-size: 1.1rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
 }
-.body-lg { font-size: 1.1rem; font-weight: 300; line-height: 1.75; color: var(--muted); }
-.body-md { font-size: 0.95rem; line-height: 1.7; color: var(--muted); }
+.body-lg { font-size: 1.1rem; font-weight: 400; line-height: 1.8; color: var(--muted); letter-spacing: 0.01em; }
+.body-md { font-size: 0.95rem; font-weight: 400; line-height: 1.75; color: var(--muted); letter-spacing: 0.01em; }
 
 /* ─── NAV ────────────────────────────────────────────────────────── */
 .nav {
@@ -142,9 +144,9 @@ ul { list-style: none; }
 }
 .nav-links a {
   font-family: var(--f-display);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
   transition: color 0.2s;
@@ -254,7 +256,7 @@ ul { list-style: none; }
 .hero-content { position: relative; z-index: 1; max-width: 720px; }
 .hero-content .tag { margin-bottom: var(--space-s); }
 .hero-headline {
-  font-family: 'Exo 2', sans-serif;
+  font-family: var(--f-display);
   margin-bottom: var(--space-m);
 }
 .hero-sub { margin-bottom: var(--space-l); max-width: 520px; }
@@ -276,7 +278,7 @@ ul { list-style: none; }
   padding-top: var(--space-m);
   border-top: 1px solid var(--border);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-m);
 }
 .stat-num {
@@ -329,8 +331,8 @@ ul { list-style: none; }
   margin-bottom: var(--space-s);
 }
 .card-icon svg { width: 20px; height: 20px; stroke: var(--accent); }
-.card h3 { font-family: var(--f-display); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-.card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+.card h3 { font-family: var(--f-display); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+.card p { font-family: var(--f-body); font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
 
 /* ─── SURFACE BAND ───────────────────────────────────────────────── */
 .band { background: var(--surface); }
@@ -506,7 +508,7 @@ ul { list-style: none; }
   margin-bottom: var(--space-s);
 }
 .footer-logo span { color: var(--accent); }
-.footer-desc { font-size: 0.88rem; color: rgba(255,255,255,0.4); line-height: 1.7; }
+.footer-desc { font-family: var(--f-body); font-size: 0.9rem; color: rgba(255,255,255,0.4); line-height: 1.75; }
 .footer-col h4 {
   font-family: var(--f-display);
   font-size: 0.7rem;
@@ -518,7 +520,8 @@ ul { list-style: none; }
 }
 .footer-col a {
   display: block;
-  font-size: 0.88rem;
+  font-family: var(--f-body);
+  font-size: 0.9rem;
   color: rgba(255,255,255,0.55);
   margin-bottom: 0.5rem;
   transition: color 0.2s;
@@ -551,8 +554,8 @@ ul { list-style: none; }
   min-width: 32px;
   padding-top: 0.15rem;
 }
-.process-body h3 { font-family: var(--f-display); font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
-.process-body p { font-size: 0.88rem; color: var(--muted); }
+.process-body h3 { font-family: var(--f-display); font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+.process-body p { font-family: var(--f-body); font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
 
 /* ─── HIGHLIGHT BAND ─────────────────────────────────────────────── */
 .highlight-band {
@@ -607,6 +610,48 @@ ul { list-style: none; }
   .hero-stats { grid-template-columns: 1fr 1fr; }
   .gallery-grid { grid-template-columns: 1fr; }
   .gallery-item.large { grid-column: span 1; }
+}
+
+/* ─── TRUSTED PARTNERS MARQUEE ───────────────────────────────────── */
+.partners-section {
+  padding: var(--space-l) 0;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.partners-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.partners-track {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.partners-track:hover { animation-play-state: paused; }
+.partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 52px;
+  filter: grayscale(100%);
+  opacity: 0.55;
+  transition: filter 0.3s, opacity 0.3s;
+}
+.partner-logo:hover { filter: grayscale(0%); opacity: 1; }
+.partner-logo img {
+  height: 100%;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+}
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* ─── ANIMATIONS ─────────────────────────────────────────────────── */
