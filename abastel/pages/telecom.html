@@ -7,102 +7,194 @@
   <meta name="description" content="Abastel's complete FTTX and CATV product range — fiber patch cords, optical closures, termination boxes, and accessories for modern telecom networks." />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
-    /* ── FEATURED PRODUCT ── */
-    .featured-product {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 0;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--white);
-      box-shadow: 0 4px 32px rgba(0,0,0,0.06);
-    }
-    .featured-product-image {
-      background: var(--surface);
-      min-height: 420px;
+
+    /* ── PAGE HERO WITH BACKGROUND IMAGE ── */
+    .telecom-hero {
+      position: relative;
+      min-height: 520px;
       display: flex;
       align-items: center;
-      justify-content: center;
       overflow: hidden;
-      position: relative;
+      background: #0a1628;
     }
-    .featured-product-image img {
+    .telecom-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../telecom products/Background header .jpeg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35;
+    }
+    .telecom-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,10,30,0.92) 40%, rgba(0,10,30,0.3) 100%);
+    }
+    .telecom-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 0 5rem;
+    }
+
+    /* ── FEATURED SLIDER ── */
+    .slider-section { background: var(--white); padding: var(--space-l) 0; }
+    .slider-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 48px rgba(0,0,0,0.08);
+      background: var(--white);
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      min-height: 420px;
+    }
+    .slide-image {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .slide-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
+      display: block;
     }
-    .featured-product-image .fp-badge {
+    .slide-badge {
       position: absolute;
       top: 1.2rem;
       left: 1.2rem;
       background: var(--accent);
       color: #fff;
       font-family: var(--f-display);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 0.35rem 0.8rem;
+      padding: 0.3rem 0.75rem;
       border-radius: 100px;
     }
-    .featured-product-info {
-      padding: 3rem;
+    .slide-counter {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 1.2rem;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-family: var(--f-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+    }
+    .slide-info {
+      padding: 3rem 3rem 3rem 2.5rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.9rem;
     }
-    .featured-product-info .fp-category {
+    .slide-category {
       font-family: var(--f-display);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
     }
-    .featured-product-info h2 {
+    .slide-info h2 {
       font-family: var(--f-display);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
       font-weight: 800;
-      line-height: 1.15;
+      line-height: 1.12;
       letter-spacing: -0.025em;
       color: var(--text);
     }
-    .featured-product-info p {
+    .slide-info p {
       font-family: var(--f-body);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: var(--muted);
       line-height: 1.75;
     }
-    .fp-specs {
+    .slide-specs {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      margin-top: 0.5rem;
-      padding-top: 1rem;
+      gap: 0.5rem;
+      padding-top: 0.9rem;
       border-top: 1px solid var(--border);
+      margin-top: 0.2rem;
     }
-    .fp-spec {
+    .slide-spec {
       display: flex;
       align-items: center;
       gap: 0.6rem;
       font-family: var(--f-body);
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       color: var(--muted);
     }
-    .fp-spec::before {
+    .slide-spec::before {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--accent);
       flex-shrink: 0;
     }
 
+    /* Arrow buttons */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .slider-arrow:hover { background: var(--accent); border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,87,168,0.3); }
+    .slider-arrow:hover svg { stroke: #fff; }
+    .slider-arrow svg { width: 18px; height: 18px; stroke: var(--text); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+    .slider-arrow.prev { left: -22px; }
+    .slider-arrow.next { right: -22px; }
+
+    /* Dots */
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+      border: none;
+      padding: 0;
+    }
+    .dot.active { background: var(--accent); transform: scale(1.4); }
+
     /* ── CATEGORY SECTION ── */
-    .category-block { margin-bottom: 4rem; }
+    .category-block { margin-bottom: 3.5rem; }
     .category-label {
       display: flex;
       align-items: center;
@@ -111,9 +203,10 @@
     }
     .category-label h3 {
       font-family: var(--f-display);
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: -0.01em;
+      white-space: nowrap;
     }
     .category-label::after {
       content: '';
@@ -122,11 +215,11 @@
       background: var(--border);
     }
 
-    /* ── PRODUCT CARD (image-only) ── */
+    /* ── PRODUCT CARD ── */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
+      gap: 1.1rem;
     }
     .product-card {
       background: var(--white);
@@ -145,105 +238,271 @@
       aspect-ratio: 1 / 1;
       background: var(--surface);
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     .product-card-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.35s;
+      display: block;
     }
-    .product-card:hover .product-card-image img {
-      transform: scale(1.05);
-    }
+    .product-card:hover .product-card-image img { transform: scale(1.05); }
     .product-card-name {
-      padding: 0.85rem 1rem;
+      padding: 0.8rem 0.9rem;
       font-family: var(--f-display);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: -0.005em;
       color: var(--text);
-      line-height: 1.35;
+      line-height: 1.3;
       border-top: 1px solid var(--border);
     }
 
-    /* placeholder tile */
-    .product-card-image.placeholder {
-      background: var(--surface);
-      position: relative;
-    }
-    .product-card-image.placeholder::after {
-      content: attr(data-label);
-      position: absolute;
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
       inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      animation: lbIn 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10000;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
       font-family: var(--f-display);
-      font-size: 0.75rem;
+      font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.04em;
-      color: var(--muted);
-      text-transform: uppercase;
-      text-align: center;
-      padding: 1rem;
+      background: rgba(0,0,0,0.5);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
     }
+    .product-card-image { cursor: zoom-in; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .featured-product { grid-template-columns: 1fr; }
-      .featured-product-image { min-height: 260px; }
-      .featured-product-info { padding: 2rem; }
+    @media (max-width: 960px) {
+      .slide { grid-template-columns: 1fr; }
+      .slide-image { min-height: 260px; }
+      .slide-info { padding: 2rem; }
+      .slider-arrow.prev { left: 8px; }
+      .slider-arrow.next { right: 8px; }
       .product-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .slide-info { padding: 1.5rem; }
     }
   </style>
 </head>
 <body data-page="telecom">
 
-  <section class="page-hero">
-    <div class="container">
-      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Verticals<span class="sep">/</span>Telecom & Fiber</div>
-      <p class="tag">Vertical — Telecom & Fiber</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
-        Connecting networks.<br>At every scale.
+  <!-- ── HERO WITH BACKGROUND IMAGE ── -->
+  <section class="telecom-hero">
+    <div class="telecom-hero-bg"></div>
+    <div class="telecom-hero-overlay"></div>
+    <div class="container telecom-hero-content">
+      <div class="breadcrumb" style="--bc-color:rgba(255,255,255,0.45)">
+        <a href="../index.html" style="color:rgba(255,255,255,0.5)">Home</a>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.5)">Verticals</span>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.7)">Telecom & Fiber</span>
+      </div>
+      <p class="tag" style="margin-top:1.5rem">Vertical — Telecom & Fiber</p>
+      <h1 class="display-xl" style="max-width:640px;margin-top:1rem;color:#fff">
+        We're connecting<br>everyone.
       </h1>
-      <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:540px;margin-top:1.5rem">
+      <p class="body-lg" style="color:rgba(255,255,255,0.58);max-width:500px;margin-top:1.5rem">
         Complete FTTX and CATV product range — manufactured at our Delhi facility with strict QC standards.
       </p>
     </div>
   </section>
 
-  <!-- ── FEATURED PRODUCT ── -->
-  <section class="section">
+  <!-- ── FEATURED SLIDER ── -->
+  <section class="slider-section">
     <div class="container">
       <div class="section-header fade-up" style="margin-bottom:2rem">
-        <p class="tag">Featured Product</p>
-        <h2 class="display-md">Our most specified solution.</h2>
+        <p class="tag">Featured Products</p>
+        <h2 class="display-md">Our most specified solutions.</h2>
       </div>
-      <div class="featured-product fade-up">
-        <div class="featured-product-image">
-          <!-- Replace src with: ../telecom-products/ftth-box.jpg -->
-          <img src="../telecom-products/ftth-box.jpg" alt="FTTH Home Termination Box"
-               onerror="this.style.display='none'" />
-          <span class="fp-badge">Featured</span>
-        </div>
-        <div class="featured-product-info">
-          <span class="fp-category">FTTH / Home Termination</span>
-          <h2>FTTH Box<br>Home Termination Unit</h2>
-          <p>
-            Abastel's FTTH Box is built for last-mile fiber deployment — compact, reliable, and designed for both indoor and outdoor installation. Used across Airtel, Jio, Vi, and ACT network rollouts.
-          </p>
-          <div class="fp-specs">
-            <div class="fp-spec">Material: High-grade PP — Weather & UV resistant</div>
-            <div class="fp-spec">Application: Indoor & outdoor FTTX deployment</div>
-            <div class="fp-spec">Design: Compact, secure locking, easy install</div>
-            <div class="fp-spec">Available in multiple port configurations</div>
-          </div>
+      <div style="position:relative;" class="fade-up">
+        <div class="slider-wrapper">
+          <div class="slider-track" id="sliderTrack">
+
+            <!-- SLIDE 1: FTTH Box -->
+            <div class="slide">
+              <div class="slide-image">
+                <img src="../telecom products/FTTH.jpeg" alt="FTTH Home Termination Box" />
+                <span class="slide-badge">Featured</span>
+                <span class="slide-counter">1 / 6</span>
+              </div>
+              <div class="slide-info">
+                <span class="slide-category">FTTH / Home Termination</span>
+                <h2>FTTH Box</h2>
+                <p>Built for last-mile fiber deployment — compact, reliable, and designed for both indoor and outdoor installation. Used across Airtel, Jio, Vi, and ACT network rollouts.</p>
+                <div class="slide-specs">
+                  <div class="slide-spec">Material: High-grade PP — Weather & UV resistant</div>
+                  <div class="slide-spec">Application: Indoor & outdoor FTTX deployment</div>
+                  <div class="slide-spec">Compact design with secure locking system</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 2: JC Box -->
+            <div class="slide">
+              <div class="slide-image">
+                <img src="../telecom products/Fiber termination box JC box .jpeg" alt="JC Box" />
+                <span class="slide-badge">Featured</span>
+                <span class="slide-counter">2 / 6</span>
+              </div>
+              <div class="slide-info">
+                <span class="slide-category">Joint Closure</span>
+                <h2>JC Box — Fiber Termination Box</h2>
+                <p>Heavy-duty joint closure box for aerial and underground fiber splicing. IP-rated and built to handle Indian field conditions across all seasons.</p>
+                <div class="slide-specs">
+                  <div class="slide-spec">Material: High-strength PP — Waterproof & durable</div>
+                  <div class="slide-spec">Application: Aerial & underground fiber splicing</div>
+                  <div class="slide-spec">Strong, reliable, long-lasting protection</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 3: Mini JC -->
+            <div class="slide">
+              <div class="slide-image">
+                <img src="../telecom products/Mini JC .jpeg" alt="Mini JC Box" />
+                <span class="slide-badge">Featured</span>
+                <span class="slide-counter">3 / 6</span>
+              </div>
+              <div class="slide-info">
+                <span class="slide-category">Mini Joint Closure</span>
+                <h2>Mini JC Box</h2>
+                <p>Compact outdoor joint closure for splicing fiber cables in tight spaces. Lightweight, UV stabilized, and easy to install for last-mile FTTX deployments.</p>
+                <div class="slide-specs">
+                  <div class="slide-spec">Material: PP — UV stabilized & weather resistant</div>
+                  <div class="slide-spec">Application: Outdoor fiber splicing</div>
+                  <div class="slide-spec">Compact & lightweight — easy installation</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 4: Messenger Wire -->
+            <div class="slide">
+              <div class="slide-image">
+                <img src="../telecom products/mesenger wire .jpeg" alt="Messenger Wire" />
+                <span class="slide-badge">Featured</span>
+                <span class="slide-counter">4 / 6</span>
+              </div>
+              <div class="slide-info">
+                <span class="slide-category">Cables & Wires</span>
+                <h2>Stay Wire / Messenger Wire</h2>
+                <p>High-strength support wire for aerial fiber cable installations. Available in GI wire core with LDPE/HDPE outer sheath for long-lasting outdoor performance.</p>
+                <div class="slide-specs">
+                  <div class="slide-spec">Inner Wire: GI (Galvanized Iron)</div>
+                  <div class="slide-spec">Outer Sheath: LDPE & HDPE</div>
+                  <div class="slide-spec">Application: Outdoor aerial support wire</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 5: Ladder -->
+            <div class="slide">
+              <div class="slide-image">
+                <img src="../telecom products/ladder.jpeg" alt="Aluminium Telescopic Ladder" />
+                <span class="slide-badge">Featured</span>
+                <span class="slide-counter">5 / 6</span>
+              </div>
+              <div class="slide-info">
+                <span class="slide-category">Field Equipment</span>
+                <h2>Aluminium Telescopic Ladder</h2>
+                <p>Lightweight, strong, and compact telescopic ladder for field installation teams. Ideal for aerial fiber work, pole climbing, and maintenance tasks.</p>
+                <div class="slide-specs">
+                  <div class="slide-spec">Material: High-quality aluminium alloy</div>
+                  <div class="slide-spec">Design: Telescopic — compact for easy storage</div>
+                  <div class="slide-spec">Strong & durable — 150kg capacity</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 6: Mini Bamboo -->
+            <div class="slide">
+              <div class="slide-image">
+                <img src="../telecom products/Mini bamboo.jpeg" alt="Mini Bamboo Joint Enclosure" />
+                <span class="slide-badge">Featured</span>
+                <span class="slide-counter">6 / 6</span>
+              </div>
+              <div class="slide-info">
+                <span class="slide-category">Joint Enclosure</span>
+                <h2>Mini Bamboo Joint Enclosure</h2>
+                <p>Outdoor ring-lock type joint enclosure for joining fiber cables. Weatherproof, durable, and built for FTTX field conditions across India.</p>
+                <div class="slide-specs">
+                  <div class="slide-spec">Material: PP — Weatherproof & durable</div>
+                  <div class="slide-spec">Lock Type: Ring lock</div>
+                  <div class="slide-spec">Application: Outdoor fiber cable joining</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /slider-track -->
+        </div><!-- /slider-wrapper -->
+
+        <!-- Arrows -->
+        <button class="slider-arrow prev" id="prevBtn" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="slider-arrow next" id="nextBtn" aria-label="Next">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <!-- Dots -->
+        <div class="slider-dots" id="sliderDots">
+          <button class="dot active" data-index="0"></button>
+          <button class="dot" data-index="1"></button>
+          <button class="dot" data-index="2"></button>
+          <button class="dot" data-index="3"></button>
+          <button class="dot" data-index="4"></button>
+          <button class="dot" data-index="5"></button>
         </div>
       </div>
     </div>
@@ -253,121 +512,89 @@
   <section class="section band">
     <div class="container">
       <div class="section-header fade-up" style="margin-bottom:3rem">
-        <p class="tag">Products</p>
+        <p class="tag">All Products</p>
         <h2 class="display-md">Everything we make & supply.</h2>
       </div>
 
-      <!-- CATEGORY 1: Termination & Closure Boxes -->
+      <!-- Termination & Closure Boxes -->
       <div class="category-block fade-up">
-        <div class="category-label">
-          <h3>Termination & Closure Boxes</h3>
-        </div>
+        <div class="category-label"><h3>Termination & Closure Boxes</h3></div>
         <div class="product-grid">
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">Joint Closure Box</div>
-          </div>
-          <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/FTTH.jpeg" alt="FTTH Box" /></div>
             <div class="product-card-name">FTTH / Home Termination Box</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">Mini Termination Box</div>
+            <div class="product-card-image"><img src="../telecom products/Fiber termination box JC box .jpeg" alt="JC Box" /></div>
+            <div class="product-card-name">JC Box — Fiber Termination Box</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">Medium Termination Box</div>
+            <div class="product-card-image"><img src="../telecom products/Mini JC .jpeg" alt="Mini JC" /></div>
+            <div class="product-card-name">Mini JC Box</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/medium JC.jpeg" alt="Medium JC" /></div>
+            <div class="product-card-name">Medium JC Box</div>
+          </div>
+          <div class="product-card">
+            <div class="product-card-image"><img src="../telecom products/Mini bamboo.jpeg" alt="Mini Bamboo" /></div>
             <div class="product-card-name">Mini Bamboo Joint Enclosure</div>
-          </div>
-          <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">Durable Plastic Enclosure Box</div>
-          </div>
-          <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">Outdoor Splice Closure</div>
-          </div>
-          <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">Dome Closure</div>
           </div>
         </div>
       </div>
 
-      <!-- CATEGORY 2: Fiber Cables & Wires -->
+      <!-- Fiber Cables & Wires -->
       <div class="category-block fade-up">
-        <div class="category-label">
-          <h3>Fiber Cables & Wires</h3>
-        </div>
+        <div class="category-label"><h3>Fiber Cables & Wires</h3></div>
         <div class="product-grid">
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/Fiber Cable.jpeg" alt="Fiber Cable" /></div>
             <div class="product-card-name">Fiber Cable (2–288 Core)</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/Fiber Patch cord .jpeg" alt="Fiber Patch Cord" /></div>
             <div class="product-card-name">Fiber Patch Cords (SC/LC/FC)</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/mesenger wire .jpeg" alt="Messenger Wire" /></div>
             <div class="product-card-name">Stay Wire / Messenger Wire</div>
-          </div>
-          <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">Drop Cable</div>
           </div>
         </div>
       </div>
 
-      <!-- CATEGORY 3: Connectivity & Splitters -->
+      <!-- Connectivity & Splitters -->
       <div class="category-block fade-up">
-        <div class="category-label">
-          <h3>Connectivity & Splitters</h3>
-        </div>
+        <div class="category-label"><h3>Connectivity & Splitters</h3></div>
         <div class="product-grid">
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/Plc splitter.jpeg" alt="PLC Splitter" /></div>
             <div class="product-card-name">PLC Splitter</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/Ont .jpeg" alt="ONT" /></div>
             <div class="product-card-name">ONT — Optical Network Terminal</div>
-          </div>
-          <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">Fiber Adapters (SC/LC/FC/ST)</div>
-          </div>
-          <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
-            <div class="product-card-name">CATV Splitters & Taps</div>
           </div>
         </div>
       </div>
 
-      <!-- CATEGORY 4: Tools & Accessories -->
+      <!-- Tools & Accessories -->
       <div class="category-block fade-up">
-        <div class="category-label">
-          <h3>Fiber Tools & Accessories</h3>
-        </div>
+        <div class="category-label"><h3>Fiber Tools & Accessories</h3></div>
         <div class="product-grid">
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/fiber cleaver.jpeg" alt="Fiber Cleaver" /></div>
             <div class="product-card-name">Fiber Cleaver</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/Cabel stripper.jpeg" alt="Cable Stripper" /></div>
             <div class="product-card-name">Fiber Cable Stripper</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/splicing sleeves.jpeg" alt="Splicing Sleeves" /></div>
             <div class="product-card-name">Fiber Splicing Sleeves (40mm / 60mm)</div>
           </div>
           <div class="product-card">
-            <div class="product-card-image placeholder" data-label="Image coming soon"></div>
+            <div class="product-card-image"><img src="../telecom products/ladder.jpeg" alt="Telescopic Ladder" /></div>
             <div class="product-card-name">Aluminium Telescopic Ladder</div>
           </div>
         </div>
@@ -388,7 +615,7 @@
           <span class="process-num">01</span>
           <div class="process-body">
             <h3>In-House Manufacturing</h3>
-            <p>Our Delhi facility manufactures fiber patch cord assemblies in-house — giving us full quality control and faster turnaround times than distributors.</p>
+            <p>Our Delhi facility manufactures fiber assemblies in-house — giving us full quality control and faster turnaround than distributors.</p>
           </div>
         </div>
         <div class="process-item fade-up">
@@ -402,14 +629,14 @@
           <span class="process-num">03</span>
           <div class="process-body">
             <h3>Complete Project Supply</h3>
-            <p>From the first connector to the final enclosure, we supply the complete bill of materials for FTTX and CATV projects. One vendor. No gaps.</p>
+            <p>From the first connector to the final enclosure — one vendor, full BOM, no gaps.</p>
           </div>
         </div>
         <div class="process-item fade-up">
           <span class="process-num">04</span>
           <div class="process-body">
             <h3>Strong QC Standards</h3>
-            <p>Every batch is tested by our dedicated QC team before dispatch. Insertion loss, return loss, and physical inspection — documented and guaranteed.</p>
+            <p>Every batch tested before dispatch. Insertion loss, return loss, and physical inspection — documented and guaranteed.</p>
           </div>
         </div>
       </div>
@@ -427,6 +654,84 @@
     </div>
   </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose">✕</button>
+    <img id="lbImg" src="" alt="" />
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
+
   <script src="../js/shared.js"></script>
+  <script>
+    (function () {
+      // ── LIGHTBOX ──
+      const lb        = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose   = document.getElementById('lbClose');
+
+      function openLightbox(src, caption) {
+        lbImg.src = src;
+        lbImg.alt = caption;
+        lbCaption.textContent = caption;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      // Attach click to all product card images
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const img     = card.querySelector('.product-card-image img');
+          const caption = card.querySelector('.product-card-name').textContent;
+          if (img) openLightbox(img.src, caption);
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+      // ── SLIDER ──
+      const track  = document.getElementById('sliderTrack');
+      const dots   = document.querySelectorAll('.dot');
+      const total  = 6;
+      let current  = 0;
+      let timer;
+
+      function goTo(n) {
+        current = (n + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      document.getElementById('prevBtn').addEventListener('click', () => { goTo(current - 1); reset(); });
+      document.getElementById('nextBtn').addEventListener('click', () => { goTo(current + 1); reset(); });
+      dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.index); reset(); }));
+
+      // Auto-advance every 5s
+      function autoPlay() { timer = setInterval(() => goTo(current + 1), 5000); }
+      function reset() { clearInterval(timer); autoPlay(); }
+      autoPlay();
+
+      // Keyboard support
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft')  { goTo(current - 1); reset(); }
+        if (e.key === 'ArrowRight') { goTo(current + 1); reset(); }
+      });
+
+      // Touch/swipe support
+      let touchStartX = 0;
+      track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend',   e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { goTo(current + (diff > 0 ? 1 : -1)); reset(); }
+      });
+    })();
+  </script>
 </body>
 </html>
