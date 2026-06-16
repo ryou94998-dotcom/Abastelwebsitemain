@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Abastel</title>
+  <meta name="description" content="Get in touch with Abastel for product enquiries, project quotations, partnership proposals, or to schedule a factory visit." />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body data-page="contact">
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Contact</div>
+      <p class="tag">Contact Us</p>
+      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
+        Let's work together.
+      </h1>
+      <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:540px;margin-top:1.5rem">
+        Product enquiry, project quote, partnership, or factory visit — we respond within 24 hours.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-row" style="align-items: flex-start; gap: var(--space-xl);">
+
+        <!-- ── FORM ── -->
+        <div style="flex: 1.3;">
+          <p class="tag" style="margin-bottom: 1rem;">Send a Message</p>
+          <!-- Replace ACTION with your Formspree endpoint: https://formspree.io/f/YOUR_ID -->
+          <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Rahul Sharma" required />
+              </div>
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" placeholder="Acme Telecom Pvt. Ltd." />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="rahul@company.com" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">Select a topic…</option>
+                <option value="telecom">Telecom & Fiber Products</option>
+                <option value="plastics">Plastic Moulds & Machining</option>
+                <option value="packaging">Packaging Solutions</option>
+                <option value="aerospace">Aerospace Components</option>
+                <option value="factory">Factory Visit / Audit</option>
+                <option value="partnership">Partnership / Distributorship</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your requirement — product type, quantity, timeline, or any specific specs…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
+          </form>
+        </div>
+
+        <!-- ── INFO ── -->
+        <div style="flex: 0.8;">
+          <p class="tag" style="margin-bottom: 1rem;">Get in Touch</p>
+
+          <div style="margin-bottom: var(--space-m);">
+            <div class="display-sm" style="margin-bottom: 0.4rem;">Email</div>
+            <a href="mailto:info@abastel.in" style="color: var(--accent); font-size: 0.95rem;">info@abastel.in</a>
+          </div>
+
+          <div class="divider"></div>
+
+          <div style="margin-bottom: var(--space-m);">
+            <div class="display-sm" style="margin-bottom: 0.4rem;">Location</div>
+            <p class="body-md">Delhi, India<br>Manufacturing Facility & Registered Office</p>
+          </div>
+
+          <div class="divider"></div>
+
+          <div style="margin-bottom: var(--space-m);">
+            <div class="display-sm" style="margin-bottom: 0.4rem;">Response Time</div>
+            <p class="body-md">We typically respond to all enquiries within 24 hours on business days (Mon–Sat).</p>
+          </div>
+
+          <div class="divider"></div>
+
+          <div>
+            <div class="display-sm" style="margin-bottom: var(--space-s);">Our Verticals</div>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+              <a href="telecom.html" style="font-size: 0.88rem; color: var(--accent);">→ Telecom & Fiber</a>
+              <a href="plastic-moulds.html" style="font-size: 0.88rem; color: var(--accent);">→ Plastic Moulds & Machining</a>
+              <a href="packaging.html" style="font-size: 0.88rem; color: var(--accent);">→ Packaging</a>
+              <a href="aerospace.html" style="font-size: 0.88rem; color: var(--accent);">→ Aerospace</a>
+              <a href="factory-tour.html" style="font-size: 0.88rem; color: var(--accent);">→ Factory Tour</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/shared.js"></script>
+</body>
+</html>

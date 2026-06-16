@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Abastel</title>
+  <meta name="description" content="Abastel's product and facility gallery — fiber products, electrical cables, precision components, and our Delhi manufacturing facility." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .gallery-filter {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-l);
+    }
+    .filter-btn {
+      font-family: var(--f-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
+    .gallery-masonry {
+      columns: 3;
+      column-gap: 2px;
+    }
+    .gallery-masonry .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 2px;
+      aspect-ratio: unset;
+      height: auto;
+    }
+    .gallery-masonry .gallery-placeholder {
+      padding: 4rem 1rem;
+      min-height: 180px;
+    }
+    .gallery-masonry .gallery-item:nth-child(3n+1) .gallery-placeholder { min-height: 240px; }
+    .gallery-masonry .gallery-item:nth-child(3n+2) .gallery-placeholder { min-height: 160px; }
+    @media (max-width: 768px) {
+      .gallery-masonry { columns: 2; }
+    }
+    @media (max-width: 480px) {
+      .gallery-masonry { columns: 1; }
+    }
+  </style>
+</head>
+<body data-page="gallery">
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Gallery</div>
+      <p class="tag">Gallery</p>
+      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
+        Built here.<br>Shipped everywhere.
+      </h1>
+      <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:540px;margin-top:1.5rem">
+        Products, facility, and the work that leaves our Delhi manufacturing plant every day.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- Filters -->
+      <div class="gallery-filter fade-up">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+        <button class="filter-btn" onclick="filterGallery('telecom', this)">Telecom & Fiber</button>
+        <button class="filter-btn" onclick="filterGallery('plastics', this)">Plastic Moulds</button>
+        <button class="filter-btn" onclick="filterGallery('packaging', this)">Packaging</button>
+        <button class="filter-btn" onclick="filterGallery('aerospace', this)">Aerospace</button>
+        <button class="filter-btn" onclick="filterGallery('factory', this)">Factory</button>
+      </div>
+
+      <div class="gallery-masonry fade-up" id="gallery">
+        <div class="gallery-item" data-cat="telecom">
+          <div class="gallery-placeholder">Fiber Patch Cords — SC/LC</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <div class="gallery-placeholder">Assembly Floor, Delhi</div>
+        </div>
+        <div class="gallery-item" data-cat="plastics">
+          <div class="gallery-placeholder">Injection Moulded Enclosures</div>
+        </div>
+        <div class="gallery-item" data-cat="telecom">
+          <div class="gallery-placeholder">Optical Joint Closure — Dome Type</div>
+        </div>
+        <div class="gallery-item" data-cat="aerospace">
+          <div class="gallery-placeholder">Precision Machined Bracket</div>
+        </div>
+        <div class="gallery-item" data-cat="packaging">
+          <div class="gallery-placeholder">Custom Retail Packaging</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <div class="gallery-placeholder">QC Inspection Lab</div>
+        </div>
+        <div class="gallery-item" data-cat="telecom">
+          <div class="gallery-placeholder">Fiber Termination Box — 24 Port</div>
+        </div>
+        <div class="gallery-item" data-cat="plastics">
+          <div class="gallery-placeholder">CNC Machining — Aluminium Part</div>
+        </div>
+        <div class="gallery-item" data-cat="packaging">
+          <div class="gallery-placeholder">Corrugated Shipping Boxes</div>
+        </div>
+        <div class="gallery-item" data-cat="aerospace">
+          <div class="gallery-placeholder">Aerospace Sub-Assembly Component</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <div class="gallery-placeholder">Finished Goods Dispatch Area</div>
+        </div>
+        <div class="gallery-item" data-cat="telecom">
+          <div class="gallery-placeholder">MTP/MPO Fiber Cassette</div>
+        </div>
+        <div class="gallery-item" data-cat="plastics">
+          <div class="gallery-placeholder">Mould Tool — Injection Press</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <div class="gallery-placeholder">Team at Work — Factory Floor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NOTE FOR CLIENT ── -->
+  <section class="section band">
+    <div class="container">
+      <div class="section-row">
+        <div class="section-title fade-up">
+          <p class="tag">Add Your Photos</p>
+          <h2 class="display-md">Replace placeholders with your actual images.</h2>
+        </div>
+        <div class="section-body fade-up">
+          <p class="body-md">The gallery above uses placeholder tiles. To add your product and facility photos, replace each <code>&lt;div class="gallery-placeholder"&gt;</code> with an <code>&lt;img&gt;</code> tag pointing to your image file. Upload your images into an <code>images/</code> folder and reference them like: <code>&lt;img src="../images/fiber-patchcords.jpg" alt="Fiber Patch Cords"&gt;</code></p>
+          <div class="divider"></div>
+          <p class="body-md">Recommended image size: minimum 800px wide, JPG format for photos. Keep file sizes under 300KB each for fast load times on GitHub Pages.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/shared.js"></script>
+  <script>
+    function filterGallery(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#gallery .gallery-item').forEach(item => {
+        if (cat === 'all' || item.dataset.cat === cat) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
