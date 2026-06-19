@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moulds & Machining — Abastel</title>
+  <meta name="description" content="Abastel's precision injection moulding, CNC machining, and custom mould fabrication — manufactured in Delhi to tight tolerances for every industry." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+
+    /* ── HERO WITH BACKGROUND IMAGE ── */
+    .moulds-hero {
+      position: relative;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #0d0d0d;
+    }
+    .moulds-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../Moulding and machining/Header image .jpeg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.45;
+    }
+    .moulds-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.75) 40%, rgba(0,0,0,0.15) 100%);
+    }
+    .moulds-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 7rem 0 5rem;
+      width: 100%;
+    }
+
+    /* ── PHOTO GALLERY STRIP ── */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 6px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .photo-strip-item {
+      overflow: hidden;
+      background: var(--surface);
+      position: relative;
+    }
+    .photo-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+    .photo-strip-item:hover img { transform: scale(1.05); }
+    .photo-strip-item.tall {
+      grid-row: span 2;
+      aspect-ratio: unset;
+      min-height: 380px;
+    }
+    .photo-strip-item.short {
+      aspect-ratio: 16/9;
+    }
+    .photo-strip-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.62));
+      padding: 1.2rem 1rem 0.7rem;
+      font-family: var(--f-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .photo-strip-item:hover .photo-strip-label { opacity: 1; }
+
+    /* ── CAPABILITY CARDS (icon + image + text) ── */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-m);
+    }
+    .cap-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .cap-card:hover {
+      box-shadow: 0 10px 32px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+    .cap-card-img {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .cap-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .cap-card:hover .cap-card-img img { transform: scale(1.04); }
+    .cap-card-body {
+      padding: 1.3rem 1.4rem 1.5rem;
+      border-top: 3px solid var(--accent);
+    }
+    .cap-card-body h3 {
+      font-family: var(--f-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .cap-card-body p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .cap-badge {
+      display: inline-block;
+      font-family: var(--f-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-lt);
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── SPECS TABLE ── */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .specs-table th {
+      font-family: var(--f-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.9rem 1.2rem;
+      border-bottom: 2px solid var(--border);
+      background: var(--surface);
+    }
+    .specs-table td {
+      padding: 0.85rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .specs-table tr:last-child td { border-bottom: none; }
+    .specs-table tr:hover td { background: var(--accent-lt); }
+    .specs-table td:first-child { font-weight: 600; font-family: var(--f-display); font-size: 0.85rem; }
+
+    /* ── MOULD TYPES GRID ── */
+    .mould-types {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-m);
+    }
+    .mould-type-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .mould-type-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .mould-type-img {
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .mould-type-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .mould-type-card:hover .mould-type-img img { transform: scale(1.05); }
+    .mould-type-body {
+      padding: 1.4rem 1.5rem;
+      border-left: 3px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .mould-type-body h3 {
+      font-family: var(--f-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .mould-type-body p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .cap-grid { grid-template-columns: 1fr 1fr; }
+      .mould-types { grid-template-columns: 1fr; }
+      .photo-strip {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .photo-strip-item.tall { grid-row: span 1; min-height: 200px; }
+    }
+    @media (max-width: 600px) {
+      .cap-grid { grid-template-columns: 1fr; }
+      .mould-type-card { grid-template-columns: 1fr; }
+      .mould-type-img { aspect-ratio: 16/9; height: 160px; }
+      .photo-strip { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body data-page="moulds">
+
+  <!-- ── HERO WITH REAL BACKGROUND IMAGE ── -->
+  <section class="moulds-hero">
+    <div class="moulds-hero-bg"></div>
+    <div class="moulds-hero-overlay"></div>
+    <div class="container moulds-hero-content">
+      <div class="breadcrumb" style="color:rgba(255,255,255,0.4);margin-bottom:var(--space-s);">
+        <a href="../index.html" style="color:rgba(255,255,255,0.4);">Home</a>
+        <span class="sep">/</span>Verticals<span class="sep">/</span>Moulds & Machining
+      </div>
+      <p class="tag" style="color:rgba(255,255,255,0.55);">Vertical — Moulds & Machining</p>
+      <h1 class="display-xl" style="max-width:680px;margin-top:1rem;color:#fff;">
+        Shaped to<br>perfection.
+      </h1>
+      <p class="body-lg" style="color:rgba(255,255,255,0.65);max-width:520px;margin-top:1.5rem;">
+        Precision injection moulding, CNC machining, and custom mould fabrication — all under one roof in Delhi.
+      </p>
+      <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary">Request a Quote →</a>
+        <a href="#capabilities" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);">Our Capabilities</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PHOTO GALLERY STRIP ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="tag">Our Work</p>
+        <h2 class="display-md">From the shop floor.</h2>
+      </div>
+      <div class="photo-strip fade-up">
+        <div class="photo-strip-item tall">
+          <img src="../Moulding and machining/Big inection mouldingg .jpeg" alt="Large Injection Moulding Machine" />
+          <div class="photo-strip-label">Large Injection Moulding</div>
+        </div>
+        <div class="photo-strip-item short">
+          <img src="../Moulding and machining/Injection moulding .jpeg" alt="Injection Moulding Process" />
+          <div class="photo-strip-label">Injection Moulding</div>
+        </div>
+        <div class="photo-strip-item short">
+          <img src="../Moulding and machining/Moulds.jpeg" alt="Precision Moulds" />
+          <div class="photo-strip-label">Precision Moulds</div>
+        </div>
+        <div class="photo-strip-item short">
+          <img src="../Moulding and machining/CNC.jpeg" alt="CNC Machining" />
+          <div class="photo-strip-label">CNC Machining</div>
+        </div>
+        <div class="photo-strip-item short">
+          <img src="../Moulding and machining/Machinng .jpeg" alt="Machining Operations" />
+          <div class="photo-strip-label">Machining Operations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CAPABILITIES ── -->
+  <section class="section band" id="capabilities">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="tag">Capabilities</p>
+        <h2 class="display-md">Built for precision, built for volume.</h2>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-card fade-up">
+          <div class="cap-card-img">
+            <img src="../Moulding and machining/Injection moulding .jpeg" alt="Injection Moulding" />
+          </div>
+          <div class="cap-card-body">
+            <div class="cap-badge">Core Service</div>
+            <h3>Injection Moulding</h3>
+            <p>High-volume injection moulding using PP, ABS, HDPE, LDPE, Nylon, and engineering polymers. Single-cavity to multi-cavity tooling available.</p>
+          </div>
+        </div>
+        <div class="cap-card fade-up">
+          <div class="cap-card-img">
+            <img src="../Moulding and machining/CNC.jpeg" alt="CNC Machining" />
+          </div>
+          <div class="cap-card-body">
+            <div class="cap-badge">Core Service</div>
+            <h3>CNC Machining</h3>
+            <p>Multi-axis CNC machining of plastic and metal components to tight tolerances. Ideal for prototypes, jigs, fixtures, and low-to-mid volume runs.</p>
+          </div>
+        </div>
+        <div class="cap-card fade-up">
+          <div class="cap-card-img">
+            <img src="../Moulding and machining/Moulds.jpeg" alt="Custom Mould Fabrication" />
+          </div>
+          <div class="cap-card-body">
+            <div class="cap-badge">In-House</div>
+            <h3>Custom Mould Fabrication</h3>
+            <p>We design and fabricate production moulds in-house — reducing lead times and giving you direct control over tool quality and lifetime.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MOULD TYPES ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="tag">What We Make</p>
+        <h2 class="display-md">Types of components we produce.</h2>
+      </div>
+      <div class="mould-types">
+        <div class="mould-type-card fade-up">
+          <div class="mould-type-img">
+            <img src="../Moulding and machining/Big inection mouldingg .jpeg" alt="Large Structural Moulds" />
+          </div>
+          <div class="mould-type-body">
+            <h3>Large Structural Components</h3>
+            <p>Crates, enclosures, trays, and industrial housings moulded at high tonnage for structural applications across telecom, electrical, and industrial sectors.</p>
+          </div>
+        </div>
+        <div class="mould-type-card fade-up">
+          <div class="mould-type-img">
+            <img src="../Moulding and machining/Injection moulding .jpeg" alt="Precision Moulded Parts" />
+          </div>
+          <div class="mould-type-body">
+            <h3>Precision Moulded Parts</h3>
+            <p>Close-tolerance components with complex geometries — connector bodies, housings, brackets, and sub-assembly parts built to customer drawings.</p>
+          </div>
+        </div>
+        <div class="mould-type-card fade-up">
+          <div class="mould-type-img">
+            <img src="../Moulding and machining/Machinng .jpeg" alt="Machined Components" />
+          </div>
+          <div class="mould-type-body">
+            <h3>Machined Components</h3>
+            <p>Turned and milled parts from plastic rod, sheet, and block — ideal for tight-tolerance, low-volume production where tooling investment isn't justified.</p>
+          </div>
+        </div>
+        <div class="mould-type-card fade-up">
+          <div class="mould-type-img">
+            <img src="../Moulding and machining/Moulds.jpeg" alt="Production Tooling" />
+          </div>
+          <div class="mould-type-body">
+            <h3>Production Tooling & Moulds</h3>
+            <p>P20, H13, and aluminium moulds fabricated in-house or via certified partners. Tool maintenance and repair also available for existing tooling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPECS TABLE ── -->
+  <section class="section band">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="tag">Technical Specifications</p>
+        <h2 class="display-md">Numbers that matter.</h2>
+      </div>
+      <div class="fade-up" style="border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--white);">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Injection Moulding</th>
+              <th>CNC Machining</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Clamping Tonnage</td>
+              <td>50T – 850T</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Dimensional Tolerance</td>
+              <td>±0.05 mm</td>
+              <td>±0.01 mm</td>
+            </tr>
+            <tr>
+              <td>Materials</td>
+              <td>PP, ABS, HDPE, LDPE, PVC, Nylon, PC, POM</td>
+              <td>Plastics, Aluminium, Mild Steel, Brass</td>
+            </tr>
+            <tr>
+              <td>Shot Weight</td>
+              <td>Up to 2,000 g</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Min. Order Quantity</td>
+              <td>500 pcs (production), 1 pc (prototype)</td>
+              <td>1 pc (no MOQ)</td>
+            </tr>
+            <tr>
+              <td>Lead Time (Tooling)</td>
+              <td>3–6 weeks</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Lead Time (Parts)</td>
+              <td>1–2 weeks post-tooling approval</td>
+              <td>3–10 working days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY ABASTEL FOR MOULDS ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="tag">Why Choose Us</p>
+        <h2 class="display-md">What sets our moulding apart.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card fade-up">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <h3>In-House Toolroom</h3>
+          <p>We build and maintain moulds in-house — faster turnarounds, lower costs, and complete control over tool quality from day one.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Fast Prototyping</h3>
+          <p>Need a sample before committing to a production tool? Our CNC team can deliver first-off samples within days, not weeks.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>100% QC Before Dispatch</h3>
+          <p>Every batch is dimensionally verified and visually inspected before leaving the facility. Non-conforming parts never ship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <div class="highlight-band fade-up">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <h2 class="display-md">Share your drawing. Get a quote.</h2>
+        <p style="color:rgba(255,255,255,0.7);margin-top:0.5rem">Send us your specification and we'll respond within 24 hours.</p>
+      </div>
+      <a href="contact.html" class="btn btn-outline" style="white-space:nowrap;color:#fff;border-color:rgba(255,255,255,0.5)">Request a Quote →</a>
+    </div>
+  </div>
+
+  <script src="../js/shared.js"></script>
+</body>
+</html>

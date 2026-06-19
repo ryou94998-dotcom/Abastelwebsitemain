@@ -11,7 +11,8 @@ const NAV_HTML = `
         <a href="#">Verticals ▾</a>
         <div class="dropdown-menu">
           <a href="telecom.html">Telecom & Fiber</a>
-          <a href="plastic-moulds.html">Plastic Moulds & Machining</a>
+          <a href="plastic.html">Plastic Granules & Recycling</a>
+          <a href="moulds.html">Moulds & Machining</a>
           <a href="packaging.html">Packaging</a>
           <a href="aerospace.html">Aerospace</a>
         </div>
@@ -31,7 +32,8 @@ const NAV_HTML = `
   <a href="our-story.html">Our Story</a>
   <a href="our-team.html">Our Team</a>
   <a href="telecom.html">Telecom & Fiber</a>
-  <a href="plastic-moulds.html">Plastic Moulds & Machining</a>
+  <a href="plastic.html">Plastic Granules & Recycling</a>
+  <a href="moulds.html">Moulds & Machining</a>
   <a href="packaging.html">Packaging</a>
   <a href="aerospace.html">Aerospace</a>
   <a href="factory-tour.html">Factory Tour</a>
@@ -57,7 +59,8 @@ const FOOTER_HTML = `
       <div class="footer-col">
         <h4>Verticals</h4>
         <a href="telecom.html">Telecom & Fiber</a>
-        <a href="plastic-moulds.html">Plastic Moulds</a>
+        <a href="plastic.html">Plastic Granules</a>
+        <a href="moulds.html">Moulds & Machining</a>
         <a href="packaging.html">Packaging</a>
         <a href="aerospace.html">Aerospace</a>
       </div>

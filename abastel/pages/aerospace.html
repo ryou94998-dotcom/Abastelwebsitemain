@@ -6,22 +6,41 @@
   <title>Aerospace — Abastel</title>
   <meta name="description" content="Abastel's aerospace manufacturing vertical — high-precision components built to aerospace-grade quality and tolerance standards." />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+
+    /* ── AEROSPACE HERO WITH SKYLAKES IMAGE ── */
+    .aerospace-hero {
+      position: relative;
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #060c1a;
+    }
+    .aerospace-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../SkyLakes%20Aerospace/Header%20Image%20.png');
+      background-size: cover;
+      background-position: center top;
+      opacity: 1;
+    }
+    .aerospace-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 60%);
+    }
+  </style>
 </head>
 <body data-page="aerospace">
 
-  <section class="page-hero">
-    <div class="container">
-      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Verticals<span class="sep">/</span>Aerospace</div>
-      <p class="tag">Vertical — Aerospace</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
-        Tolerance.<br>Traceability.<br><span style="color:var(--accent)">Trust.</span>
-      </h1>
-      <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:540px;margin-top:1.5rem">
-        High-precision components for aerospace and defence applications — where every micron matters.
-      </p>
-    </div>
+  <!-- ── HERO WITH SKYLAKES HEADER IMAGE ── -->
+  <section class="aerospace-hero">
+    <div class="aerospace-hero-bg"></div>
+    <div class="aerospace-hero-overlay"></div>
   </section>
 
+  <!-- ── OVERVIEW ── -->
   <section class="section">
     <div class="container">
       <div class="section-row">
@@ -42,7 +61,8 @@
     </div>
   </section>
 
-  <section class="section band">
+  <!-- ── CAPABILITIES ── -->
+  <section class="section band" id="capabilities">
     <div class="container">
       <div class="section-header fade-up">
         <p class="tag">Capabilities</p>
@@ -95,6 +115,7 @@
     </div>
   </section>
 
+  <!-- ── STANDARDS ── -->
   <section class="section">
     <div class="container">
       <div class="section-header fade-up">
@@ -127,6 +148,7 @@
     </div>
   </section>
 
+  <!-- ── CTA ── -->
   <div class="highlight-band">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
       <div>

@@ -3,34 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plastic Moulds & Machining — Abastel</title>
-  <meta name="description" content="Abastel's precision plastic moulding, CNC machining, and plastic granules recycling — manufactured in Delhi." />
+  <title>Plastic Granules & Recycling — Abastel</title>
+  <meta name="description" content="Abastel's plastic granules manufacturing and recycling — converting post-industrial and post-consumer plastic waste into premium-grade recycled granules in Delhi." />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
-
-    /* ── SECTION DIVIDER LABEL ── */
-    .vertical-divider {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: var(--space-l) 0 var(--space-m);
-    }
-    .vertical-divider-label {
-      font-family: var(--f-display);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      white-space: nowrap;
-    }
-    .vertical-divider::before,
-    .vertical-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
 
     /* ── INTRO SPLIT (image left, text right) ── */
     .intro-split {
@@ -52,20 +28,6 @@
       object-fit: cover;
       display: block;
     }
-    .intro-split-img .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--f-display);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--border);
-    }
-    .intro-split-text {}
     .intro-split-text .tag { margin-bottom: var(--space-xs); }
     .intro-split-text h2 { margin-bottom: var(--space-s); }
     .intro-split-text p { margin-bottom: var(--space-s); }
@@ -87,7 +49,7 @@
       border-radius: 100px;
     }
 
-    /* ── PROCESS CARDS (image + title + text) ── */
+    /* ── PROCESS CARDS ── */
     .process-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -108,7 +70,6 @@
       aspect-ratio: 16/9;
       background: var(--surface);
       overflow: hidden;
-      position: relative;
     }
     .process-card-img img {
       width: 100%;
@@ -118,19 +79,6 @@
       transition: transform 0.4s;
     }
     .process-card:hover .process-card-img img { transform: scale(1.04); }
-    .process-card-img .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--f-display);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--border);
-    }
     .process-card-body {
       padding: 1.25rem 1.4rem 1.5rem;
       border-top: 3px solid var(--accent);
@@ -157,7 +105,7 @@
       line-height: 1.7;
     }
 
-    /* ── SHOWCASE IMAGE (full-width infographic) ── */
+    /* ── SHOWCASE IMAGE ── */
     .showcase-img {
       border-radius: 8px;
       overflow: hidden;
@@ -170,171 +118,39 @@
       display: block;
     }
 
-    /* ── MOULDS GRID (image left stacked, text right) ── */
-    .moulds-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-l);
-      align-items: start;
-    }
-    .moulds-img-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .moulds-img-item {
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--surface);
-      aspect-ratio: 16/9;
-      position: relative;
-    }
-    .moulds-img-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .moulds-img-item .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--f-display);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--border);
-    }
-    .moulds-text-stack {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-m);
-      padding-top: 0.5rem;
-    }
-    .moulds-text-item {}
-    .moulds-text-item h3 {
-      font-family: var(--f-display);
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      margin-bottom: 0.6rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 2px solid var(--accent);
-      display: inline-block;
-    }
-    .moulds-text-item p {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ── SERVICES GRID (3 cards with image) ── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-m);
-    }
-    .service-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .service-card:hover {
-      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-      transform: translateY(-3px);
-    }
-    .service-card-img {
-      aspect-ratio: 16/9;
-      background: var(--surface);
-      overflow: hidden;
-      position: relative;
-    }
-    .service-card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s;
-    }
-    .service-card:hover .service-card-img img { transform: scale(1.04); }
-    .service-card-img .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--f-display);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--border);
-    }
-    .service-card-body {
-      padding: 1.25rem 1.4rem 1.5rem;
-    }
-    .service-card-body h3 {
-      font-family: var(--f-display);
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
-    }
-    .service-card-body p {
-      font-size: 0.87rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .intro-split,
-      .moulds-intro { grid-template-columns: 1fr; }
-      .process-cards,
-      .services-grid { grid-template-columns: 1fr 1fr; }
+      .intro-split { grid-template-columns: 1fr; }
+      .process-cards { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
-      .process-cards,
-      .services-grid { grid-template-columns: 1fr; }
+      .process-cards { grid-template-columns: 1fr; }
     }
 
   </style>
 </head>
-<body data-page="plastics">
+<body data-page="plastic">
 
   <!-- ── HERO ── -->
   <section class="page-hero">
     <div class="container">
-      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Verticals<span class="sep">/</span>Plastic Moulds & Machining</div>
-      <p class="tag">Vertical — Plastic Moulds & Machining</p>
+      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Verticals<span class="sep">/</span>Plastic Granules & Recycling</div>
+      <p class="tag">Vertical — Plastic Solutions</p>
       <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
-        Precision in every<br>millimetre.
+        Waste in.<br>Value out.
       </h1>
       <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:560px;margin-top:1.5rem">
-        From recycled plastic granules to precision injection moulds and CNC-machined components — all under one roof in Delhi.
+        Manufacturing premium-grade recycled plastic granules from post-industrial and post-consumer waste — reducing environmental impact without compromising quality.
       </p>
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════
-       SECTION 1 — PLASTIC GRANULES
-  ═══════════════════════════════════════════ -->
+  <!-- ── OVERVIEW ── -->
   <section class="section">
     <div class="container">
-
-      <div class="vertical-divider fade-up">
-        <span class="vertical-divider-label">Plastic Solutions</span>
-      </div>
-
-      <!-- Intro split -->
       <div class="intro-split fade-up" style="margin-bottom: var(--space-xl);">
         <div class="intro-split-img">
-          <img src="../Plastic and moulding/types of granule .jpeg" alt="Types of Plastic Granules — PP, ABS, HDPE, LDPE, PVC, PS, PC, PA, POM, PET" />
+          <img src="../Plastic/types of granule .jpeg" alt="Types of Plastic Granules — PP, ABS, HDPE, LDPE, PVC, PET" />
         </div>
         <div class="intro-split-text">
           <p class="tag">Plastic Granules</p>
@@ -358,7 +174,7 @@
         </div>
       </div>
 
-      <!-- Process cards -->
+      <!-- Process -->
       <div class="section-header fade-up">
         <p class="tag">Our Process</p>
         <h2 class="display-md">Waste to value, step by step.</h2>
@@ -366,7 +182,7 @@
       <div class="process-cards">
         <div class="process-card fade-up">
           <div class="process-card-img">
-            <img src="../Plastic and moulding/Step 1 .jpeg" alt="Waste Collection & Sorting" />
+            <img src="../Plastic/Step 1 .jpeg" alt="Waste Collection & Sorting" />
           </div>
           <div class="process-card-body">
             <div class="process-card-step">Step 01</div>
@@ -376,7 +192,7 @@
         </div>
         <div class="process-card fade-up">
           <div class="process-card-img">
-            <img src="../Plastic and moulding/Step 2 .jpeg" alt="Washing & Grinding" />
+            <img src="../Plastic/Step 2 .jpeg" alt="Washing & Grinding" />
           </div>
           <div class="process-card-body">
             <div class="process-card-step">Step 02</div>
@@ -386,7 +202,7 @@
         </div>
         <div class="process-card fade-up">
           <div class="process-card-img">
-            <img src="../Plastic and moulding/step 3.jpeg" alt="Melting, Extrusion & Granules" />
+            <img src="../Plastic/step 3.jpeg" alt="Melting, Extrusion & Granules" />
           </div>
           <div class="process-card-body">
             <div class="process-card-step">Step 03</div>
@@ -396,24 +212,23 @@
         </div>
       </div>
 
-      <!-- Products made from our granules -->
+      <!-- Showcase -->
       <div class="section-header fade-up" style="margin-top: var(--space-xl);">
         <p class="tag">From Granules to Products</p>
         <h2 class="display-md">Where our recycled granules end up.</h2>
       </div>
       <div class="showcase-img fade-up">
-        <img src="../Plastic and moulding/Products made from recycled plastic .jpeg" alt="Products Made From Recycled Plastic Granules — crates, pallets, household items, pipes, automotive parts, furniture, bins, storage boxes, plant pots, hoses, paver blocks, manhole covers, cable drums, hangers, industrial components" />
+        <img src="../Plastic/Products made from recycled plastic .jpeg" alt="Products Made From Recycled Plastic Granules" />
       </div>
-
     </div>
   </section>
 
   <!-- ── INDUSTRIES ── -->
-  <section class="section">
+  <section class="section band">
     <div class="container">
       <div class="section-header fade-up">
         <p class="tag">Industries Served</p>
-        <h2 class="display-md">Where our parts go.</h2>
+        <h2 class="display-md">Where our granules go.</h2>
       </div>
       <div class="grid-4">
         <div class="card fade-up">
@@ -435,7 +250,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </div>
           <h3>Automotive</h3>
-          <p>Interior and under-hood plastic components machined to OEM specifications.</p>
+          <p>Interior and under-hood plastic components for OEM supply chains.</p>
         </div>
         <div class="card fade-up">
           <div class="card-icon">
@@ -452,8 +267,8 @@
   <div class="highlight-band fade-up">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
       <div>
-        <h2 class="display-md">Share your drawing. Get a quote.</h2>
-        <p style="color:rgba(255,255,255,0.7);margin-top:0.5rem">Send us your specification and we'll respond within 24 hours.</p>
+        <h2 class="display-md">Need recycled plastic granules?</h2>
+        <p style="color:rgba(255,255,255,0.7);margin-top:0.5rem">Tell us your grade and volume requirements and we'll respond within 24 hours.</p>
       </div>
       <a href="contact.html" class="btn btn-outline" style="white-space:nowrap;color:#fff;border-color:rgba(255,255,255,0.5)">Request a Quote →</a>
     </div>
