@@ -15,6 +15,8 @@ const NAV_HTML = `
           <a href="moulds.html">Moulds & Machining</a>
           <a href="packaging.html">Packaging</a>
           <a href="aerospace.html">Aerospace</a>
+          <a href="ai.html">AI</a>
+          <a href="software.html">Software</a>
         </div>
       </li>
       <li><a href="factory-tour.html" data-page="factory">Factory Tour</a></li>
@@ -36,6 +38,8 @@ const NAV_HTML = `
   <a href="moulds.html">Moulds & Machining</a>
   <a href="packaging.html">Packaging</a>
   <a href="aerospace.html">Aerospace</a>
+  <a href="ai.html">AI</a>
+  <a href="software.html">Software</a>
   <a href="factory-tour.html">Factory Tour</a>
   <a href="gallery.html">Gallery</a>
   <a href="contact.html">Contact Us</a>
@@ -63,6 +67,8 @@ const FOOTER_HTML = `
         <a href="moulds.html">Moulds & Machining</a>
         <a href="packaging.html">Packaging</a>
         <a href="aerospace.html">Aerospace</a>
+        <a href="ai.html">AI</a>
+        <a href="software.html">Software</a>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>

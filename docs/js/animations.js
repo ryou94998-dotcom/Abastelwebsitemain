@@ -91,7 +91,7 @@ if (!reduceMotion) {
 
 // ─── CURSOR SPOTLIGHT ON HERO SECTIONS ────────────────────────────
 if (!reduceMotion) {
-  const zones = document.querySelectorAll('.hero, .page-hero, .aerospace-hero, .moulds-hero, .telecom-hero');
+  const zones = document.querySelectorAll('.hero, .page-hero, .aerospace-hero, .moulds-hero, .telecom-hero, .contact-grid-card');
   zones.forEach((zone) => {
     zone.addEventListener('mousemove', (e) => {
       const r = zone.getBoundingClientRect();
