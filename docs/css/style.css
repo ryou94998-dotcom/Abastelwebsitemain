@@ -341,6 +341,19 @@ ul { list-style: none; }
   font-family: var(--f-display);
   margin-bottom: var(--space-m);
 }
+.dot-loader .dot {
+  display: inline-block;
+  opacity: 0.15;
+  animation: dotLoaderPulse 1.4s infinite;
+}
+.dot-loader .dot:nth-child(2) { animation-delay: 0.2s; }
+.dot-loader .dot:nth-child(3) { animation-delay: 0.4s; }
+.dot-loader .dot-black { color: var(--text); }
+.dot-loader .dot-blue { color: var(--accent); }
+@keyframes dotLoaderPulse {
+  0%, 60%, 100% { opacity: 0.15; }
+  30% { opacity: 1; }
+}
 .hero-sub { margin-bottom: var(--space-l); max-width: 520px; }
 .hero-actions { display: flex; gap: var(--space-s); flex-wrap: wrap; }
 .hero-logo-panel {
