@@ -17,7 +17,8 @@ abastel/
 │   ├── our-story.html
 │   ├── our-team.html
 │   ├── telecom.html
-│   ├── plastic-moulds.html
+│   ├── plastic.html
+│   ├── moulds.html
 │   ├── packaging.html
 │   ├── aerospace.html
 │   ├── factory-tour.html
