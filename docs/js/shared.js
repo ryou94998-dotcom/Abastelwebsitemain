@@ -2,7 +2,7 @@
 const NAV_HTML = `
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="../index.html" class="nav-logo">ABAS<span>TEL</span></a>
+    <a href="../index.html" class="nav-logo" aria-label="Abastel home"><svg class="nav-logo-mark" viewBox="20 16 160 152" fill="none" aria-hidden="true"><path d="M100 16 L145.26 102 L106.63 102 L100 86 L93.37 102 L54.74 102 Z" fill="#0A2540"/><path d="M48.42 114 L88.4 114 L66 168 L20 168 Z" fill="#0A2540"/><path d="M111.6 114 L151.58 114 L180 168 L134 168 Z" fill="#0A2540"/><path d="M86.37 102 L113.63 102 L118.6 114 L81.4 114 Z" fill="#1F9DA8"/></svg>ABAS<span>TEL</span></a>
     <ul class="nav-links">
       <li><a href="../index.html" data-page="home">Home</a></li>
       <li><a href="our-story.html" data-page="story">Our Story</a></li>
@@ -52,6 +52,27 @@ const FOOTER_HTML = `
       <div>
         <div class="footer-logo">ABAS<span>TEL</span></div>
         <p class="footer-desc">A professionally managed company delivering quality fiber, electrical, moulding, packaging, and aerospace solutions from Delhi.</p>
+        <div class="footer-social">
+          <p class="footer-social-label">Follow Us</p>
+          <!-- Placeholder social links — replace href="#" with Abastel's real profile URLs -->
+          <div class="social-tiles">
+            <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on X (Twitter)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+            </a>
+            <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Company</h4>

@@ -181,7 +181,7 @@
     }
     .mould-type-card {
       display: grid;
-      grid-template-columns: 200px 1fr;
+      grid-template-columns: minmax(120px, 200px) 1fr;
       gap: 0;
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -399,6 +399,7 @@
         <h2 class="display-md">Numbers that matter.</h2>
       </div>
       <div class="fade-up" style="border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--white);">
+        <div style="overflow-x:auto;">
         <table class="specs-table">
           <thead>
             <tr>
@@ -445,6 +446,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </section>

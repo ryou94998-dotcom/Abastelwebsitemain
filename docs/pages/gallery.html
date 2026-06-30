@@ -47,12 +47,15 @@
       padding: 4rem 1rem;
       min-height: 180px;
     }
-    .gallery-masonry .gallery-item:nth-child(3n+1) .gallery-placeholder { min-height: 240px; }
-    .gallery-masonry .gallery-item:nth-child(3n+2) .gallery-placeholder { min-height: 160px; }
-    @media (max-width: 768px) {
-      .gallery-masonry { columns: 2; }
+    @media (min-width: 901px) {
+      .gallery-masonry .gallery-item:nth-child(3n+1) .gallery-placeholder { min-height: 240px; }
+      .gallery-masonry .gallery-item:nth-child(3n+2) .gallery-placeholder { min-height: 160px; }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 900px) {
+      .gallery-masonry { columns: 2; }
+      .gallery-masonry .gallery-item:nth-child(2n+1) .gallery-placeholder { min-height: 220px; }
+    }
+    @media (max-width: 640px) {
       .gallery-masonry { columns: 1; }
     }
   </style>

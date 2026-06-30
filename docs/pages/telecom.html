@@ -176,6 +176,10 @@
     .slider-arrow svg { width: 18px; height: 18px; stroke: var(--text); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
     .slider-arrow.prev { left: -22px; }
     .slider-arrow.next { right: -22px; }
+    @media (max-width: 1100px) {
+      .slider-arrow.prev { left: 8px; }
+      .slider-arrow.next { right: 8px; }
+    }
 
     /* Dots */
     .slider-dots {
@@ -332,12 +336,10 @@
       .slide { grid-template-columns: 1fr; }
       .slide-image { min-height: 240px; }
       .slide-info { padding: 2rem; }
-      .slider-arrow.prev { left: 8px; }
-      .slider-arrow.next { right: 8px; }
       .product-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .product-grid { grid-template-columns: 1fr; gap: 0.75rem; }
       .slide-info { padding: 1.5rem; }
     }
   </style>
@@ -349,7 +351,7 @@
     <div class="telecom-hero-bg"></div>
     <div class="telecom-hero-overlay"></div>
     <div class="container telecom-hero-content fade-up">
-      <div class="breadcrumb" style="--bc-color:rgba(255,255,255,0.45)">
+      <div class="breadcrumb">
         <a href="../index.html" style="color:rgba(255,255,255,0.5)">Home</a>
         <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
         <span style="color:rgba(255,255,255,0.5)">Verticals</span>
