@@ -6,6 +6,175 @@
   <title>Our Story — Abastel</title>
   <meta name="description" content="Learn how Abastel grew from a Delhi startup to an end-to-end manufacturing solutions provider across fiber, electrical, plastics, packaging, and aerospace." />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* Bright teal gradient text for highlighted words on dark backgrounds
+       (hero + conviction) — echoes the brand's teal→green gradient. */
+    .hl-gradient {
+      background: linear-gradient(120deg, #3ad0d9 0%, #14b3a4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #3ad0d9; /* fallback where background-clip:text is unsupported */
+    }
+
+    /* ── HERO ── */
+    .story-hero-title { max-width: 720px; margin-top: 1.1rem; }
+    .story-hero-lead {
+      max-width: 560px;
+      margin-top: var(--space-m);
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    /* ── ORIGIN ──
+       Anchor the left column with an at-a-glance fact list, float an oversized
+       year watermark behind it, and tighten the divider so both paragraphs read
+       together. */
+    .origin-section { position: relative; overflow: hidden; }
+    .origin-section .container { position: relative; z-index: 1; }
+    .origin-watermark {
+      position: absolute;
+      top: -3rem;
+      right: -1.5rem;
+      font-family: var(--f-display);
+      font-size: clamp(9rem, 22vw, 19rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--accent);
+      opacity: 0.06;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+    .origin-facts {
+      margin-top: var(--space-l);
+      border-top: 1px solid var(--border);
+    }
+    .origin-fact {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-m);
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .origin-fact dt {
+      font-family: var(--f-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .origin-fact dd {
+      font-family: var(--f-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: right;
+    }
+    .origin-section .divider { margin: var(--space-m) 0; }
+    .origin-section .section-body { padding-top: 0.35rem; }
+    /* Highlighter swash on the founding promise. */
+    .origin-mark {
+      background: linear-gradient(120deg, rgba(15, 110, 120, 0.16), rgba(0, 179, 164, 0.12));
+      border-radius: 4px;
+      padding: 0.05em 0.28em;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .origin-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: var(--space-m);
+    }
+    .origin-chips li {
+      font-family: var(--f-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-lt);
+      border: 1px solid rgba(15, 110, 120, 0.16);
+      border-radius: 999px;
+      padding: 0.42rem 0.85rem;
+    }
+
+    /* ── CONVICTION (dark manifesto pull-quote) ── */
+    .story-conviction {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .story-conviction::before,
+    .story-conviction::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .story-conviction::before {
+      top: -22%;
+      left: -8%;
+      width: 34rem;
+      height: 34rem;
+      background: radial-gradient(circle, rgba(15, 110, 120, 0.38), transparent 62%);
+    }
+    .story-conviction::after {
+      bottom: -30%;
+      right: -10%;
+      width: 30rem;
+      height: 30rem;
+      background: radial-gradient(circle, rgba(0, 179, 164, 0.20), transparent 60%);
+    }
+    .conviction-quote {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .conviction-mark {
+      width: 3.25rem;
+      height: 3.25rem;
+      color: #35c7d0;
+      opacity: 0.9;
+      margin: 0 auto var(--space-s);
+    }
+    .conviction-quote blockquote { color: #fff; }
+    .conviction-quote figcaption {
+      margin-top: var(--space-l);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      max-width: 34rem;
+      font-family: var(--f-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.66);
+    }
+    .conviction-quote figcaption::before {
+      content: '';
+      flex-shrink: 0;
+      width: 2.5rem;
+      height: 2px;
+      background: #35c7d0;
+    }
+
+    /* ── VALUES intro ── */
+    .values-intro { max-width: 46rem; margin-top: var(--space-xs); }
+
+    @media (max-width: 640px) {
+      .origin-watermark { display: none; }
+      .conviction-quote figcaption {
+        flex-direction: column;
+        gap: 0.55rem;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body data-page="story">
 
@@ -15,30 +184,78 @@
     <div class="container fade-up">
       <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Our Story</div>
       <p class="tag">Our Story</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
-        Built with purpose.<br>Grown with trust.
+      <h1 class="display-xl story-hero-title">
+        Built with <span class="hl-gradient">purpose.</span><br>Grown with <span class="hl-gradient">trust.</span>
       </h1>
+      <p class="body-lg story-hero-lead">
+        From a single fiber line in a Delhi workshop to seven manufacturing verticals — this is how one conviction became a company.
+      </p>
+      <div class="hero-stats fade-up">
+        <div>
+          <div class="stat-num">2019</div>
+          <div class="stat-label">Founded</div>
+        </div>
+        <div>
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Industry Verticals</div>
+        </div>
+        <div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">Growth Milestones</div>
+        </div>
+        <div>
+          <div class="stat-num">Delhi</div>
+          <div class="stat-label">Registered Office</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ── ORIGIN ── -->
-  <section class="section">
+  <section class="section origin-section">
+    <div class="origin-watermark" aria-hidden="true">2019</div>
     <div class="container">
       <div class="section-row">
-        <div class="section-title">
+        <div class="section-title fade-up">
           <p class="tag">Where It Began</p>
           <h2 class="display-md">2019 — A company with something to prove.</h2>
+          <dl class="origin-facts">
+            <div class="origin-fact"><dt>Founded</dt><dd>2019</dd></div>
+            <div class="origin-fact"><dt>Headquarters</dt><dd>Delhi, India</dd></div>
+            <div class="origin-fact"><dt>First Vertical</dt><dd>Telecom &amp; Fiber</dd></div>
+            <div class="origin-fact"><dt>In Association With</dt><dd>Tortek India Pvt. Ltd.</dd></div>
+          </dl>
         </div>
-        <div class="section-body">
+        <div class="section-body fade-up">
           <p class="body-lg">
-            Abastel was founded in 2019 in Delhi with one conviction: that Indian manufacturers could deliver world-class quality at Indian prices — without compromise.
+            Abastel was founded in 2019 in Delhi with one conviction: that Indian manufacturers could deliver <span class="origin-mark">world-class quality at Indian prices</span> — without compromise.
           </p>
           <div class="divider"></div>
           <p class="body-md">
-            Starting with fiber optic products for FTTX and CATV networks, we built our manufacturing facility from the ground up. The state-of-the-art plant in Delhi now produces high-quality fiber patch cord assemblies and accessories that meet global standards. Our founders — technically fertile minds with hands-on experience — believed that a company is only as creative as the people within it. That principle still drives every hire we make and every product we ship.
+            Starting with fiber optic products for FTTX and CATV networks, we built our manufacturing facility from the ground up. The state-of-the-art plant in Delhi now produces high-quality fiber patch cord assemblies and accessories that meet global standards. Our founders — technically fertile minds with hands-on experience — hired for creativity over credentials, and that instinct still shapes every hire we make and every product we ship.
           </p>
+          <ul class="origin-chips" aria-label="What we started with">
+            <li>FTTX Networks</li>
+            <li>CATV</li>
+            <li>Fiber Patch Cords</li>
+            <li>Global Standards</li>
+          </ul>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── CONVICTION ── -->
+  <section class="section band-dark story-conviction">
+    <div class="container">
+      <figure class="conviction-quote fade-up">
+        <svg class="conviction-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.17 6C4.86 8.11 3.5 10.9 3.5 14.13c0 3.1 1.98 5.37 4.53 5.37 2.13 0 3.6-1.6 3.6-3.6 0-1.87-1.32-3.3-3.02-3.3-.3 0-.6.04-.78.1.24-2.13 1.5-4.14 3.36-5.4L9.2 5.1C8.5 5.35 7.8 5.65 7.17 6zm10.5 0c-2.31 2.11-3.67 4.9-3.67 8.13 0 3.1 1.98 5.37 4.53 5.37 2.13 0 3.6-1.6 3.6-3.6 0-1.87-1.32-3.3-3.02-3.3-.3 0-.6.04-.78.1.24-2.13 1.5-4.14 3.36-5.4L19.7 5.1c-.7.25-1.4.55-2.03.9z"/></svg>
+        <p class="tag" style="color:rgba(255,255,255,0.6)">Our Conviction</p>
+        <blockquote class="display-lg">
+          A company is only as <span class="hl-gradient">creative</span> as the people within it.
+        </blockquote>
+        <figcaption>The founding principle behind every hire we make and every product we ship.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -119,19 +336,49 @@
       <div class="section-header fade-up">
         <p class="tag">Our Values</p>
         <h2 class="display-md">What we hold constant.</h2>
+        <p class="body-md values-intro">
+          Markets shift and verticals multiply — but three principles have stayed fixed since day one.
+        </p>
       </div>
-      <div class="grid-3">
-        <div class="card fade-up">
+      <div class="tilt-card-group grid-3">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.45 1.1 1.1 1.3 1.8v.4h4.6v-.4c.2-.7.7-1.35 1.3-1.8A6 6 0 0 0 12 3z"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">01 / People</p>
           <h3>Creativity Welcomes Everyone</h3>
           <p>At Abastel, we believe a company is as creative as the people in it. New ideas are always welcome — from the shop floor to the boardroom.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Every voice counts</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">02 / Trust</p>
           <h3>Deliver on the Promise</h3>
           <p>Customer satisfaction isn't a metric — it's the measure of every project. We close every engagement with confidence.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Every project, closed right</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 11 14 11 22 21 10 13 10 13 2"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">03 / Pace</p>
           <h3>Speed Without Shortcuts</h3>
           <p>In today's world, speed is everything in communication. But never at the cost of quality. We deliver fast, and we deliver right.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Fast, and done right</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
       </div>
     </div>
@@ -139,8 +386,9 @@
 
   <!-- ── CTA ── -->
   <div class="highlight-band">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+    <div class="container fade-up" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
       <div>
+        <p class="tag" style="color:rgba(255,255,255,0.75)">The next chapter</p>
         <h2 class="display-md">Meet the team behind it all.</h2>
         <p style="color:rgba(255,255,255,0.7);margin-top:0.5rem">The people who make Abastel what it is.</p>
       </div>

@@ -1109,6 +1109,8 @@ ul { list-style: none; }
 }
 .page-hero .breadcrumb a { color: rgba(255,255,255,0.4); }
 .page-hero .breadcrumb a:hover { color: var(--white); }
+.page-hero .hero-stats { border-top-color: rgba(255,255,255,0.15); margin-top: var(--space-l); }
+.page-hero .stat-label { color: rgba(255,255,255,0.5); }
 
 /* ─── FOOTER ─────────────────────────────────────────────────────── */
 .footer {
