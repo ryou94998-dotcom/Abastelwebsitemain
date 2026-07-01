@@ -6,17 +6,55 @@
   <title>Packaging — Abastel</title>
   <meta name="description" content="Abastel's industrial and consumer packaging solutions — built for durability, brand presentation, and supply chain efficiency." />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── PAGE HERO WITH BACKGROUND IMAGE ── */
+    .packaging-hero {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #0a1628;
+    }
+    .packaging-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../Media/Banner%20images/Packaging.PNG');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.6;
+    }
+    .packaging-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,10,30,0.7) 40%, rgba(0,10,30,0.15) 100%);
+    }
+    .packaging-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 0 5rem;
+    }
+  </style>
 </head>
 <body data-page="packaging">
 
-  <section class="page-hero">
-    <div class="container fade-up">
-      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Verticals<span class="sep">/</span>Packaging</div>
-      <p class="tag">Vertical — Packaging</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
+  <!-- ── HERO WITH BACKGROUND IMAGE ── -->
+  <section class="packaging-hero">
+    <div class="packaging-hero-bg"></div>
+    <div class="packaging-hero-overlay"></div>
+    <div class="container packaging-hero-content fade-up">
+      <div class="breadcrumb">
+        <a href="../index.html" style="color:rgba(255,255,255,0.5)">Home</a>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.5)">Verticals</span>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.7)">Packaging</span>
+      </div>
+      <p class="tag" style="margin-top:1.5rem">Vertical — Packaging</p>
+      <h1 class="display-xl" style="max-width:680px;margin-top:1rem;color:#fff">
         Protected in transit.<br>Presented on shelf.
       </h1>
-      <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:540px;margin-top:1.5rem">
+      <p class="body-lg" style="color:rgba(255,255,255,0.58);max-width:540px;margin-top:1.5rem">
         Industrial and consumer packaging solutions that protect your product and build your brand.
       </p>
     </div>

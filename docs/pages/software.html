@@ -6,17 +6,55 @@
   <title>Software & Digital — Abastel</title>
   <meta name="description" content="Abastel's software vertical — custom software development, web & app development, and SEO/digital marketing for businesses." />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── PAGE HERO WITH BACKGROUND IMAGE ── */
+    .software-hero {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #0a1628;
+    }
+    .software-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../Media/Banner%20images/Software.PNG');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.6;
+    }
+    .software-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,10,30,0.7) 40%, rgba(0,10,30,0.15) 100%);
+    }
+    .software-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 0 5rem;
+    }
+  </style>
 </head>
 <body data-page="software">
 
-  <section class="page-hero">
-    <div class="container fade-up">
-      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Verticals<span class="sep">/</span>Software</div>
-      <p class="tag">Vertical — Software</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
+  <!-- ── HERO WITH BACKGROUND IMAGE ── -->
+  <section class="software-hero">
+    <div class="software-hero-bg"></div>
+    <div class="software-hero-overlay"></div>
+    <div class="container software-hero-content fade-up">
+      <div class="breadcrumb">
+        <a href="../index.html" style="color:rgba(255,255,255,0.5)">Home</a>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.5)">Verticals</span>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.7)">Software</span>
+      </div>
+      <p class="tag" style="margin-top:1.5rem">Vertical — Software</p>
+      <h1 class="display-xl" style="max-width:680px;margin-top:1rem;color:#fff">
         Built to ship.<br>Built to rank.
       </h1>
-      <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:540px;margin-top:1.5rem">
+      <p class="body-lg" style="color:rgba(255,255,255,0.58);max-width:540px;margin-top:1.5rem">
         We build software for other companies — websites, web apps, and custom systems — and back it with SEO and digital marketing to get it found.
       </p>
     </div>

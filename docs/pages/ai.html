@@ -21,18 +21,54 @@
       border-radius: 20px;
       margin-bottom: var(--space-l);
     }
+    /* ── PAGE HERO WITH BACKGROUND IMAGE ── */
+    .ai-hero {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #0a1628;
+    }
+    .ai-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../Media/Banner%20images/Ai.PNG');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.6;
+    }
+    .ai-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,10,30,0.7) 40%, rgba(0,10,30,0.15) 100%);
+    }
+    .ai-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 0 5rem;
+    }
   </style>
 </head>
 <body data-page="ai">
 
-  <section class="page-hero">
-    <div class="container fade-up">
-      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Verticals<span class="sep">/</span>AI</div>
-      <p class="tag">Vertical — AI</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
+  <!-- ── HERO WITH BACKGROUND IMAGE ── -->
+  <section class="ai-hero">
+    <div class="ai-hero-bg"></div>
+    <div class="ai-hero-overlay"></div>
+    <div class="container ai-hero-content fade-up">
+      <div class="breadcrumb">
+        <a href="../index.html" style="color:rgba(255,255,255,0.5)">Home</a>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.5)">Verticals</span>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.7)">AI</span>
+      </div>
+      <p class="tag" style="margin-top:1.5rem">Vertical — AI</p>
+      <h1 class="display-xl" style="max-width:680px;margin-top:1rem;color:#fff">
         Something intelligent<br>is on its way.
       </h1>
-      <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:540px;margin-top:1.5rem">
+      <p class="body-lg" style="color:rgba(255,255,255,0.58);max-width:540px;margin-top:1.5rem">
         Abastel is building an AI vertical. We're not ready to share details yet — but we will be soon.
       </p>
     </div>

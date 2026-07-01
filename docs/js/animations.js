@@ -182,13 +182,26 @@ if (!reduceMotion && !window.matchMedia('(hover: none)').matches) {
 
 // ─── SUBTLE CARD TILT ──────────────────────────────────────────────
 if (!reduceMotion && !window.matchMedia('(hover: none)').matches) {
-  document.querySelectorAll('.card, .vertical-card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
+  document.querySelectorAll('.card, .vertical-card, .tilt-card').forEach((card) => {
+    const setPointerVars = (event) => {
       const r = card.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width - 0.5;
-      const py = (e.clientY - r.top) / r.height - 0.5;
+      const x = (event.clientX - r.left) / r.width;
+      const y = (event.clientY - r.top) / r.height;
+      const px = x - 0.5;
+      const py = y - 0.5;
+      card.style.setProperty('--tilt-x', `${Math.max(0, Math.min(100, x * 100)).toFixed(2)}%`);
+      card.style.setProperty('--tilt-y', `${Math.max(0, Math.min(100, y * 100)).toFixed(2)}%`);
       card.style.transform = `perspective(700px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 5).toFixed(2)}deg) translateY(-3px)`;
+    };
+
+    card.addEventListener('mousemove', setPointerVars);
+    card.addEventListener('mouseenter', (event) => {
+      setPointerVars(event);
     });
-    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.setProperty('--tilt-x', '50%');
+      card.style.setProperty('--tilt-y', '35%');
+    });
   });
 }

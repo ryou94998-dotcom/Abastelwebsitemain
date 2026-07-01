@@ -586,6 +586,137 @@ ul { list-style: none; }
 .card h3 { font-family: var(--f-display); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
 .card p { font-family: var(--f-body); font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
 
+/* ─── TILT CARD GROUP ───────────────────────────────────────────── */
+.tilt-card-group {
+  position: relative;
+  align-items: stretch;
+  margin-top: 1.25rem;
+}
+.tilt-card-group .tilt-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 100%;
+  min-height: 22.5rem;
+  padding: clamp(1.5rem, 2vw, 2rem);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at var(--tilt-x, 50%) var(--tilt-y, 35%), rgba(31, 157, 168, 0.18), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(241,245,247,0.94));
+  border: 1px solid rgba(215, 222, 227, 0.88);
+  box-shadow: 0 18px 42px rgba(10, 37, 64, 0.08);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+.tilt-card-group .tilt-card::before,
+.tilt-card-group .tilt-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.tilt-card-group .tilt-card::before {
+  background: linear-gradient(135deg, rgba(31, 157, 168, 0.18), transparent 35%, rgba(15, 110, 120, 0.08) 70%, transparent 100%);
+  opacity: 0.8;
+}
+.tilt-card-group .tilt-card::after {
+  inset: auto 1rem 1rem auto;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(15, 110, 120, 0.18), transparent 65%);
+  filter: blur(10px);
+  opacity: 0.9;
+}
+.tilt-card-group .tilt-card:hover {
+  box-shadow: 0 24px 54px rgba(10, 37, 64, 0.14);
+  border-color: rgba(15, 110, 120, 0.24);
+  transform: translateY(-6px);
+}
+.tilt-card-group .card-icon {
+  position: relative;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  margin-bottom: 1.05rem;
+  background: rgba(221, 240, 242, 0.95);
+}
+.tilt-card-group .card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.tilt-card-eyebrow {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.75rem;
+  font-family: var(--f-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.tilt-card-group .tilt-card h3,
+.tilt-card-group .tilt-card p,
+.tilt-card-group .tilt-card-footer {
+  position: relative;
+  z-index: 1;
+}
+.tilt-card-group .tilt-card h3 {
+  font-size: 1.18rem;
+  margin-bottom: 0.6rem;
+}
+.tilt-card-group .tilt-card p {
+  font-size: 0.95rem;
+}
+.tilt-card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(215, 222, 227, 0.75);
+  font-family: var(--f-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(10, 37, 64, 0.72);
+}
+.tilt-card-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(15, 110, 120, 0.12);
+  color: var(--accent);
+  transform: translateZ(18px);
+}
+.tilt-card-group .tilt-card:hover .card-icon {
+  transform: translateY(-1px) scale(1.03);
+  background: var(--accent);
+}
+.tilt-card-group .tilt-card:hover .card-icon svg {
+  stroke: var(--white);
+}
+.tilt-card-sheen {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--tilt-x, 50%) var(--tilt-y, 35%), rgba(255, 255, 255, 0.65), transparent 28%);
+  opacity: 0.9;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
 /* ─── SURFACE BAND ───────────────────────────────────────────────── */
 .band { background: var(--surface); }
 .band-dark { background: var(--text); color: var(--white); }
@@ -1476,7 +1607,7 @@ ul { list-style: none; }
 
 /* ─── CARD / VERTICAL-CARD TILT SUPPORT ──────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
-  .card, .vertical-card {
+  .card, .vertical-card, .tilt-card {
     transform-style: preserve-3d;
     will-change: transform;
   }
@@ -1568,6 +1699,11 @@ ul { list-style: none; }
   line-height: 1.5;
   color: #64748b;
   margin-bottom: 0.9rem;
+  min-height: calc(0.82rem * 1.5 * 2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* wave CTA pill: liquid fill rises from the bottom on hover, with a rotating
@@ -1692,14 +1828,14 @@ ul { list-style: none; }
 .immersive-dot {
   width: 7px;
   height: 7px;
-  border-radius: 50%;
+  border-radius: 999px;
   border: none;
   padding: 0;
-  background: rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.5);
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
+  transition: background 0.25s ease, width 0.25s ease;
 }
 .immersive-dot.is-active {
+  width: 20px;
   background: var(--white);
-  transform: scale(1.35);
 }
