@@ -101,6 +101,45 @@ if (!reduceMotion) {
   });
 }
 
+// ─── HERO ORIGIN BUTTON ───────────────────────────────────────────
+if (!reduceMotion && !window.matchMedia('(hover: none)').matches) {
+  document.querySelectorAll('.hero-origin-btn').forEach((button) => {
+    const updateOriginSize = () => {
+      const rect = button.getBoundingClientRect();
+      button.style.setProperty('--origin-size', `${Math.max(rect.width, rect.height) * 2}px`);
+    };
+
+    const updateOriginPosition = (event) => {
+      const rect = button.getBoundingClientRect();
+      button.style.setProperty('--origin-x', `${event.clientX - rect.left}px`);
+      button.style.setProperty('--origin-y', `${event.clientY - rect.top}px`);
+    };
+
+    button.addEventListener('pointerenter', (event) => {
+      updateOriginSize();
+      updateOriginPosition(event);
+      button.style.setProperty('--origin-scale', '1');
+    });
+
+    button.addEventListener('pointermove', updateOriginPosition);
+
+    button.addEventListener('pointerleave', () => {
+      button.style.setProperty('--origin-scale', '0');
+    });
+
+    button.addEventListener('focus', () => {
+      updateOriginSize();
+      button.style.setProperty('--origin-x', '50%');
+      button.style.setProperty('--origin-y', '50%');
+      button.style.setProperty('--origin-scale', '1');
+    });
+
+    button.addEventListener('blur', () => {
+      button.style.setProperty('--origin-scale', '0');
+    });
+  });
+}
+
 // ─── SUBTLE CARD TILT ──────────────────────────────────────────────
 if (!reduceMotion && !window.matchMedia('(hover: none)').matches) {
   document.querySelectorAll('.card, .vertical-card').forEach((card) => {
