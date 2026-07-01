@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-label="Partner portrait 3">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#edf2f4"/>
+      <stop offset="100%" stop-color="#dfeef0"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b3651"/>
+      <stop offset="100%" stop-color="#0a2540"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="400" rx="32" fill="url(#bg)"/>
+  <circle cx="245" cy="88" r="62" fill="#ffffff" opacity="0.44"/>
+  <circle cx="84" cy="314" r="100" fill="#ffffff" opacity="0.3"/>
+  <path d="M96 286c0-42 28-77 64-77s64 35 64 77v28H96z" fill="url(#shirt)"/>
+  <circle cx="160" cy="145" r="55" fill="#f0c7a6"/>
+  <path d="M113 146c7-40 35-61 67-61 29 0 50 14 61 39-6 3-11 9-14 16-11-16-25-24-45-24-24 0-43 16-59 31-4-1-7-1-10-1z" fill="#2f4153"/>
+  <path d="M129 122c10-8 24-12 39-12 16 0 29 5 40 15" fill="none" stroke="#2f4153" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="141" cy="144" r="4.5" fill="#0a2540"/>
+  <circle cx="179" cy="144" r="4.5" fill="#0a2540"/>
+  <path d="M146 166c8 7 20 7 28 0" fill="none" stroke="#0a2540" stroke-width="4" stroke-linecap="round"/>
+  <path d="M130 216c10 12 22 19 30 19s20-7 30-19" fill="none" stroke="#324c60" stroke-width="10" stroke-linecap="round"/>
+</svg>

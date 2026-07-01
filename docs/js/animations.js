@@ -89,6 +89,46 @@ if (!reduceMotion) {
   nums.forEach((n) => obs.observe(n));
 })();
 
+// ─── STORY TIMELINE SPOTLIGHT ─────────────────────────────────────
+(function () {
+  const timeline = document.querySelector('.story-timeline');
+  if (!timeline) return;
+
+  const steps = Array.from(timeline.querySelectorAll('.story-timeline-step'));
+  const yearEl = timeline.querySelector('[data-timeline-year]');
+  const titleEl = timeline.querySelector('[data-timeline-title]');
+  const copyEl = timeline.querySelector('[data-timeline-copy]');
+  const progressEl = timeline.querySelector('[data-timeline-progress]');
+
+  if (!steps.length || !yearEl || !titleEl || !copyEl) return;
+
+  const setActive = (step) => {
+    steps.forEach((item) => item.classList.toggle('is-active', item === step));
+    yearEl.textContent = step.dataset.year || '';
+    titleEl.textContent = step.dataset.title || '';
+    copyEl.textContent = step.dataset.copy || '';
+    if (progressEl) {
+      const index = steps.indexOf(step) + 1;
+      progressEl.textContent = `${String(index).padStart(2, '0')} / ${String(steps.length).padStart(2, '0')}`;
+    }
+  };
+
+  setActive(steps[0]);
+  if (reduceMotion) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    const activeEntry = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (activeEntry) setActive(activeEntry.target);
+  }, {
+    rootMargin: '-36% 0px -46% 0px',
+    threshold: [0.2, 0.4, 0.6, 0.8]
+  });
+
+  steps.forEach((step) => observer.observe(step));
+})();
+
 // ─── CURSOR SPOTLIGHT ON HERO SECTIONS ────────────────────────────
 if (!reduceMotion) {
   const zones = document.querySelectorAll('.hero, .page-hero, .aerospace-hero, .moulds-hero, .telecom-hero, .contact-grid-card');

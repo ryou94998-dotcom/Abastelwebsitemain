@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-label="Partner portrait 4">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f6f7"/>
+      <stop offset="100%" stop-color="#dce9ef"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#123247"/>
+      <stop offset="100%" stop-color="#0f6e78"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="400" rx="32" fill="url(#bg)"/>
+  <circle cx="236" cy="74" r="50" fill="#ffffff" opacity="0.52"/>
+  <circle cx="82" cy="286" r="90" fill="#ffffff" opacity="0.32"/>
+  <path d="M88 286c0-43 34-79 72-79s72 36 72 79v28H88z" fill="url(#shirt)"/>
+  <circle cx="160" cy="143" r="56" fill="#efc2a1"/>
+  <path d="M109 151c4-37 31-64 68-64 32 0 56 16 66 43-9 1-17 6-22 13-8-14-21-21-38-21-23 0-44 16-59 35-5-4-10-6-15-6z" fill="#2b3d50"/>
+  <circle cx="142" cy="143" r="4.5" fill="#0a2540"/>
+  <circle cx="178" cy="143" r="4.5" fill="#0a2540"/>
+  <path d="M146 166c8 7 20 7 28 0" fill="none" stroke="#0a2540" stroke-width="4" stroke-linecap="round"/>
+  <path d="M130 216c10 12 22 19 30 19s20-7 30-19" fill="none" stroke="#2f4759" stroke-width="10" stroke-linecap="round"/>
+</svg>

@@ -23,7 +23,7 @@ const NAV_HTML = `
       <li><a href="gallery.html" data-page="gallery">Gallery</a></li>
       <li><a href="contact.html" data-page="contact">Contact</a></li>
     </ul>
-    <a href="contact.html" class="nav-cta">Get in Touch</a>
+    <a href="contact.html" class="nav-cta"><span class="nav-cta__label">Get in touch</span></a>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>

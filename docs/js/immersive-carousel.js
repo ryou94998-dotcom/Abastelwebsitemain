@@ -19,8 +19,11 @@
   if (!cards.length) return;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   let activeIndex = 0;
   let dots = [];
+  const CLICK_OPEN_DELAY = 1800;
+  const HOVER_OPEN_DELAY = 1400;
 
   function perPage() {
     const w = window.innerWidth;
@@ -76,6 +79,52 @@
     startAutoplay();
   }
 
+  function clearPressState(card) {
+    if (!card) return;
+    card.classList.remove('is-opening');
+    card.classList.remove('is-pressed');
+  }
+
+  function clearHoverState(card) {
+    if (!card) return;
+    card.classList.remove('is-hover-open');
+    window.clearTimeout(card._hoverOpenTimer);
+    card._hoverOpenTimer = null;
+  }
+
+  function openHoverState(card) {
+    if (!hoverCapable || reduceMotion) return;
+    window.clearTimeout(card._hoverOpenTimer);
+    card.classList.add('is-hover-open');
+  }
+
+  function closeHoverStateLater(card) {
+    if (!hoverCapable || reduceMotion) return;
+    window.clearTimeout(card._hoverOpenTimer);
+    card._hoverOpenTimer = window.setTimeout(() => {
+      card.classList.remove('is-hover-open');
+      card._hoverOpenTimer = null;
+    }, HOVER_OPEN_DELAY);
+  }
+
+  function handleCardClick(event) {
+    if (reduceMotion) return;
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    const card = event.currentTarget;
+    const href = card.getAttribute('href');
+    if (!href) return;
+
+    event.preventDefault();
+    card.classList.add('is-opening');
+    card.classList.add('is-pressed');
+
+    window.setTimeout(() => {
+      clearPressState(card);
+      window.location.href = href;
+    }, CLICK_OPEN_DELAY);
+  }
+
   // ── Autoplay
   const DELAY = 4000;
   let timer = null;
@@ -104,6 +153,26 @@
 
   if (prevBtn) prevBtn.addEventListener('click', () => goTo(activeIndex - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => goTo(activeIndex + 1));
+
+  cards.forEach((card) => {
+    card.addEventListener('click', handleCardClick);
+    card.addEventListener('pointerdown', () => {
+      if (!reduceMotion) card.classList.add('is-pressed');
+    });
+    card.addEventListener('pointerup', () => {
+      if (!reduceMotion) card.classList.remove('is-pressed');
+    });
+    card.addEventListener('pointercancel', () => clearPressState(card));
+    card.addEventListener('pointerenter', () => openHoverState(card));
+    card.addEventListener('pointerleave', () => {
+      if (!card.classList.contains('is-opening')) card.classList.remove('is-pressed');
+      closeHoverStateLater(card);
+    });
+    card.addEventListener('focus', () => openHoverState(card));
+    card.addEventListener('blur', () => {
+      if (!card.classList.contains('is-opening')) clearHoverState(card);
+    });
+  });
 
   carousel.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(activeIndex - 1); }
