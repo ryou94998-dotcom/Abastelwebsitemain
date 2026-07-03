@@ -33,30 +33,67 @@
       color: var(--white);
       border-color: var(--text);
     }
-    .gallery-masonry {
-      columns: 3;
-      column-gap: 2px;
+    .gallery-placeholder { padding: 4rem 1rem; min-height: 180px; }
+
+    /* ── LIGHTBOX (click-to-enlarge, same pattern as telecom.html) ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      padding: 2rem;
     }
-    .gallery-masonry .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 2px;
-      aspect-ratio: unset;
-      height: auto;
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      animation: lbIn 0.25s cubic-bezier(0.4,0,0.2,1);
     }
-    .gallery-masonry .gallery-placeholder {
-      padding: 4rem 1rem;
-      min-height: 180px;
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
     }
-    @media (min-width: 901px) {
-      .gallery-masonry .gallery-item:nth-child(3n+1) .gallery-placeholder { min-height: 240px; }
-      .gallery-masonry .gallery-item:nth-child(3n+2) .gallery-placeholder { min-height: 160px; }
+    .lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10000;
     }
-    @media (max-width: 900px) {
-      .gallery-masonry { columns: 2; }
-      .gallery-masonry .gallery-item:nth-child(2n+1) .gallery-placeholder { min-height: 220px; }
-    }
-    @media (max-width: 640px) {
-      .gallery-masonry { columns: 1; }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--f-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: rgba(0,0,0,0.5);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -92,13 +129,18 @@
           <div class="gallery-placeholder">Fiber Patch Cords — SC/LC</div>
         </div>
         <div class="gallery-item" data-cat="factory">
-          <div class="gallery-placeholder">Assembly Floor, Delhi</div>
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-20%20at%2012.16.58%20AM.jpeg" alt="Abastel factory team group photo on the shop floor" loading="lazy" />
+          <div class="gallery-caption">Our Team, Factory Floor</div>
         </div>
         <div class="gallery-item" data-cat="plastics">
           <div class="gallery-placeholder">Injection Moulded Enclosures</div>
         </div>
         <div class="gallery-item" data-cat="telecom">
           <div class="gallery-placeholder">Optical Joint Closure — Dome Type</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.54.30%20PM.jpeg" alt="Wide view of the production floor with finished components staged for dispatch" loading="lazy" />
+          <div class="gallery-caption">Production Floor — Staging Area</div>
         </div>
         <div class="gallery-item" data-cat="aerospace">
           <div class="gallery-placeholder">Precision Machined Bracket</div>
@@ -107,13 +149,18 @@
           <div class="gallery-placeholder">Custom Retail Packaging</div>
         </div>
         <div class="gallery-item" data-cat="factory">
-          <div class="gallery-placeholder">QC Inspection Lab</div>
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM.jpeg" alt="Workers operating an injection moulding press on the shop floor" loading="lazy" />
+          <div class="gallery-caption">Injection Moulding Press</div>
         </div>
         <div class="gallery-item" data-cat="telecom">
           <div class="gallery-placeholder">Fiber Termination Box — 24 Port</div>
         </div>
         <div class="gallery-item" data-cat="plastics">
           <div class="gallery-placeholder">CNC Machining — Aluminium Part</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM%20(1).jpeg" alt="Two injection moulding machines in the moulding press bay" loading="lazy" />
+          <div class="gallery-caption">Moulding Press Bay</div>
         </div>
         <div class="gallery-item" data-cat="packaging">
           <div class="gallery-placeholder">Corrugated Shipping Boxes</div>
@@ -122,7 +169,8 @@
           <div class="gallery-placeholder">Aerospace Sub-Assembly Component</div>
         </div>
         <div class="gallery-item" data-cat="factory">
-          <div class="gallery-placeholder">Finished Goods Dispatch Area</div>
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM%20(2).jpeg" alt="Factory floor machinery in the machining and assembly zone" loading="lazy" />
+          <div class="gallery-caption">Machining & Assembly Zone</div>
         </div>
         <div class="gallery-item" data-cat="telecom">
           <div class="gallery-placeholder">MTP/MPO Fiber Cassette</div>
@@ -131,7 +179,8 @@
           <div class="gallery-placeholder">Mould Tool — Injection Press</div>
         </div>
         <div class="gallery-item" data-cat="factory">
-          <div class="gallery-placeholder">Team at Work — Factory Floor</div>
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-20%20at%2012.12.59%20AM.jpeg" alt="A bin overflowing with freshly injection-moulded plastic enclosures" loading="lazy" />
+          <div class="gallery-caption">Freshly Moulded Components</div>
         </div>
       </div>
     </div>
@@ -142,17 +191,24 @@
     <div class="container">
       <div class="section-row">
         <div class="section-title fade-up">
-          <p class="tag">Add Your Photos</p>
-          <h2 class="display-md">Replace placeholders with your actual images.</h2>
+          <p class="tag">More Coming Soon</p>
+          <h2 class="display-md">Factory photos are live — the rest are on the way.</h2>
         </div>
         <div class="section-body fade-up">
-          <p class="body-md">The gallery above uses placeholder tiles. To add your product and facility photos, replace each <code>&lt;div class="gallery-placeholder"&gt;</code> with an <code>&lt;img&gt;</code> tag pointing to your image file. Upload your images into an <code>images/</code> folder and reference them like: <code>&lt;img src="../images/fiber-patchcords.jpg" alt="Fiber Patch Cords"&gt;</code></p>
+          <p class="body-md">The <strong>Factory</strong> filter above shows real photos from our Delhi facility. The Telecom & Fiber, Plastic Moulds, Packaging, and Aerospace tiles are still placeholders — to add real product photos, replace each <code>&lt;div class="gallery-placeholder"&gt;</code> with an <code>&lt;img&gt;</code> tag pointing to your image file, following the same pattern used for the factory photos above.</p>
           <div class="divider"></div>
           <p class="body-md">Recommended image size: minimum 800px wide, JPG format for photos. Keep file sizes under 300KB each for fast load times on GitHub Pages.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ── LIGHTBOX (click any real photo to enlarge, uncropped) ── -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose">✕</button>
+    <img id="lbImg" src="" alt="" />
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
 
   <script src="../js/shared.js"></script>
   <script src="../js/animations.js"></script>
@@ -168,6 +224,30 @@
         }
       });
     }
+
+    // Click-to-enlarge lightbox for real photo tiles (mirrors the pattern in telecom.html)
+    (function () {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose = document.getElementById('lbClose');
+      const photos = document.querySelectorAll('#gallery .gallery-item img');
+      if (!lb || !photos.length) return;
+
+      const open = (img) => {
+        lbImg.src = img.currentSrc || img.src;
+        lbImg.alt = img.alt || '';
+        const caption = img.parentElement.querySelector('.gallery-caption');
+        lbCaption.textContent = caption ? caption.textContent : (img.alt || '');
+        lb.classList.add('open');
+      };
+      const close = () => lb.classList.remove('open');
+
+      photos.forEach((img) => img.addEventListener('click', () => open(img)));
+      lbClose.addEventListener('click', close);
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    })();
   </script>
 </body>
 </html>

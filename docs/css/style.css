@@ -1020,28 +1020,46 @@ ul { list-style: none; }
 .team-bio { font-size: 0.85rem; color: var(--muted); margin-top: var(--space-xs); line-height: 1.6; }
 
 /* ─── GALLERY ─────────────────────────────────────────────────────── */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+/* Masonry (CSS columns) so every tile is sized to the image's own
+   natural aspect ratio — nothing gets force-cropped. Used by both
+   factory-tour.html (preview) and gallery.html (full filterable set). */
+.gallery-masonry {
+  columns: 3;
+  column-gap: 2px;
 }
 .gallery-item {
-  aspect-ratio: 4/3;
+  break-inside: avoid;
+  margin-bottom: 2px;
   background: var(--surface);
   overflow: hidden;
   position: relative;
 }
 .gallery-item img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+  height: auto;
+  cursor: zoom-in;
+  transition: transform 0.5s ease;
 }
-.gallery-item:hover img { transform: scale(1.04); }
-.gallery-item.large { grid-column: span 2; aspect-ratio: 16/9; }
+.gallery-item:hover img { transform: scale(1.035); }
+.gallery-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.75rem 1rem 0.75rem;
+  background: linear-gradient(to top, rgba(10,37,64,0.85), rgba(10,37,64,0));
+  color: var(--white);
+  font-family: var(--f-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
 .gallery-placeholder {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4/3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1053,6 +1071,8 @@ ul { list-style: none; }
   color: var(--border);
   background: var(--surface);
 }
+@media (max-width: 900px) { .gallery-masonry { columns: 2; } }
+@media (max-width: 640px) { .gallery-masonry { columns: 1; } }
 
 /* ─── CONTACT FORM ───────────────────────────────────────────────── */
 .form-group { margin-bottom: var(--space-m); }
@@ -1432,8 +1452,6 @@ ul { list-style: none; }
   }
   .hero-stats { grid-template-columns: 1fr; }
   .section-row { flex-direction: column; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; }
-  .gallery-item.large { grid-column: span 2; }
   .story-timeline {
     grid-template-columns: 1fr;
     gap: var(--space-m);
@@ -1490,8 +1508,6 @@ ul { list-style: none; }
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-m); }
   .footer-bottom { flex-direction: column; gap: var(--space-xs); text-align: center; }
   .hero-stats { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: 1fr; }
-  .gallery-item.large { grid-column: span 1; }
   .section-row { gap: var(--space-m); }
   .team-row {
     padding: 1rem;

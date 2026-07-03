@@ -6,6 +6,68 @@
   <title>Factory Tour — Abastel</title>
   <meta name="description" content="Take a behind-the-scenes look at Abastel's state-of-the-art manufacturing facility in Delhi — where fiber, plastics, and aerospace components are made." />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── LIGHTBOX (click any photo to enlarge, uncropped) — same pattern as telecom.html ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      animation: lbIn 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10000;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--f-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: rgba(0,0,0,0.5);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 <body data-page="factory">
 
@@ -44,27 +106,40 @@
   </section>
 
   <!-- ── GALLERY PREVIEW ── -->
-  <section style="padding: 0 0 var(--space-xl);">
+  <section style="padding: var(--space-l) 0 var(--space-xl);">
     <div class="container">
-      <div class="gallery-grid fade-up">
-        <div class="gallery-item large">
-          <div class="gallery-placeholder">Factory Floor — Assembly Line</div>
+      <div class="section-header fade-up">
+        <p class="tag">Inside The Plant</p>
+        <h2 class="display-md">A look at the floor.</h2>
+      </div>
+      <div class="gallery-masonry fade-up">
+        <div class="gallery-item">
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-20%20at%2012.16.58%20AM.jpeg" alt="Abastel factory team group photo on the shop floor" loading="lazy" />
+          <div class="gallery-caption">Our Team, Factory Floor</div>
         </div>
         <div class="gallery-item">
-          <div class="gallery-placeholder">Fiber Patch Cord Assembly</div>
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.54.30%20PM.jpeg" alt="Wide view of the production floor with finished components staged for dispatch" loading="lazy" />
+          <div class="gallery-caption">Production Floor — Staging Area</div>
         </div>
         <div class="gallery-item">
-          <div class="gallery-placeholder">QC Inspection Station</div>
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM.jpeg" alt="Workers operating an injection moulding press on the shop floor" loading="lazy" />
+          <div class="gallery-caption">Injection Moulding Press</div>
         </div>
         <div class="gallery-item">
-          <div class="gallery-placeholder">CNC Machining Zone</div>
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM%20(1).jpeg" alt="Two injection moulding machines in the moulding press bay" loading="lazy" />
+          <div class="gallery-caption">Moulding Press Bay</div>
         </div>
         <div class="gallery-item">
-          <div class="gallery-placeholder">Injection Moulding Press</div>
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM%20(2).jpeg" alt="Factory floor machinery in the machining and assembly zone" loading="lazy" />
+          <div class="gallery-caption">Machining & Assembly Zone</div>
         </div>
-        <div class="gallery-item large">
-          <div class="gallery-placeholder">Finished Goods Warehouse</div>
+        <div class="gallery-item">
+          <img src="../Media/Factory/WhatsApp%20Image%202026-06-20%20at%2012.12.59%20AM.jpeg" alt="A bin overflowing with freshly injection-moulded plastic enclosures" loading="lazy" />
+          <div class="gallery-caption">Freshly Moulded Components</div>
         </div>
+      </div>
+      <div class="fade-up" style="text-align:center;margin-top:var(--space-l)">
+        <a href="gallery.html" class="btn btn-outline">View Full Gallery →</a>
       </div>
     </div>
   </section>
@@ -129,7 +204,39 @@
     </div>
   </section>
 
+  <!-- ── LIGHTBOX (click any photo to enlarge, uncropped) ── -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose">✕</button>
+    <img id="lbImg" src="" alt="" />
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
+
   <script src="../js/shared.js"></script>
   <script src="../js/animations.js"></script>
+  <script>
+    // Click-to-enlarge lightbox for the factory gallery preview (mirrors telecom.html)
+    (function () {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose = document.getElementById('lbClose');
+      const photos = document.querySelectorAll('.gallery-masonry .gallery-item img');
+      if (!lb || !photos.length) return;
+
+      const open = (img) => {
+        lbImg.src = img.currentSrc || img.src;
+        lbImg.alt = img.alt || '';
+        const caption = img.parentElement.querySelector('.gallery-caption');
+        lbCaption.textContent = caption ? caption.textContent : (img.alt || '');
+        lb.classList.add('open');
+      };
+      const close = () => lb.classList.remove('open');
+
+      photos.forEach((img) => img.addEventListener('click', () => open(img)));
+      lbClose.addEventListener('click', close);
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
 </html>
