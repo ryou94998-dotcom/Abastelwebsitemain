@@ -37,6 +37,47 @@
       width: 100%;
     }
 
+    /* ── INTRO SPLIT (image left, text right) ── */
+    .intro-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-l);
+      align-items: center;
+    }
+    .intro-split-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface);
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .intro-split-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .intro-split-text .tag { margin-bottom: var(--space-xs); }
+    .intro-split-text h2 { margin-bottom: var(--space-s); }
+    .intro-split-text p { margin-bottom: var(--space-s); }
+    .material-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: var(--space-s);
+    }
+    .material-tag {
+      font-family: var(--f-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      border-radius: 100px;
+    }
+
     /* ── PHOTO GALLERY STRIP ── */
     .photo-strip {
       display: grid;
@@ -227,6 +268,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
+      .intro-split { grid-template-columns: 1fr; }
       .cap-grid { grid-template-columns: 1fr 1fr; }
       .mould-types { grid-template-columns: 1fr; }
       .photo-strip {
@@ -265,6 +307,36 @@
       <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
         <a href="contact.html" class="btn btn-primary">Request a Quote →</a>
         <a href="#capabilities" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);">Our Capabilities</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OVERVIEW ── -->
+  <section class="section">
+    <div class="container">
+      <div class="intro-split fade-up">
+        <div class="intro-split-img">
+          <img src="../Moulding and machining/Header image .jpeg" alt="Plastics Granules, Moulds & Machines — Abastel integrated manufacturing" />
+        </div>
+        <div class="intro-split-text">
+          <p class="tag">Overview</p>
+          <h2 class="display-md">From raw granule to finished part.</h2>
+          <p class="body-lg">
+            Abastel runs mould fabrication, injection moulding, and CNC machining under one roof in Delhi — the same facility that also produces the recycled plastic granules many of these parts are moulded from.
+          </p>
+          <p class="body-md">
+            That means tighter control over material quality, faster iteration between tooling and part, and a single point of contact from first sample to production run.
+          </p>
+          <div class="material-tags">
+            <span class="material-tag">P20 Steel</span>
+            <span class="material-tag">H13 Steel</span>
+            <span class="material-tag">Aluminium</span>
+            <span class="material-tag">PP</span>
+            <span class="material-tag">ABS</span>
+            <span class="material-tag">Nylon</span>
+            <span class="material-tag">POM</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -357,7 +429,7 @@
           </div>
           <div class="mould-type-body">
             <h3>Large Structural Components</h3>
-            <p>Crates, enclosures, trays, and industrial housings moulded at high tonnage for structural applications across telecom, electrical, and industrial sectors.</p>
+            <p>Crates, enclosures, trays, and industrial housings moulded at high tonnage for structural applications across telecom and industrial sectors.</p>
           </div>
         </div>
         <div class="mould-type-card fade-up">

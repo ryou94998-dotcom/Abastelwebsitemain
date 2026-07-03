@@ -51,7 +51,7 @@ const FOOTER_HTML = `
     <div class="footer-grid">
       <div>
         <div class="footer-logo">ABAS<span>TEL</span></div>
-        <p class="footer-desc">A professionally managed company delivering quality fiber, electrical, moulding, packaging, and aerospace solutions from Delhi.</p>
+        <p class="footer-desc">A professionally managed company delivering quality fiber, moulding, packaging, and aerospace solutions from Delhi.</p>
         <div class="footer-social">
           <p class="footer-social-label">Follow Us</p>
           <!-- Placeholder social links — replace href="#" with Abastel's real profile URLs -->
