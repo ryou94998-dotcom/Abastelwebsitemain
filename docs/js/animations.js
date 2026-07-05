@@ -143,7 +143,7 @@ if (!reduceMotion) {
 
 // ─── HERO ORIGIN BUTTON ───────────────────────────────────────────
 if (!reduceMotion && !window.matchMedia('(hover: none)').matches) {
-  document.querySelectorAll('.hero-origin-btn').forEach((button) => {
+  document.querySelectorAll('.hero-origin-btn, .verticals-btn').forEach((button) => {
     const updateOriginSize = () => {
       const rect = button.getBoundingClientRect();
       button.style.setProperty('--origin-size', `${Math.max(rect.width, rect.height) * 2}px`);

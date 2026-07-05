@@ -1766,87 +1766,76 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
-/* wave CTA pill: liquid fill rises from the bottom on hover, with a rotating
-   blob edge to give the fill surface a wavy/sloshing look */
+/* CTA pill: same white pill + cursor-tracked fill as the hero buttons
+   (.hero-origin-btn), sized and colored to match exactly. The pointer-follow
+   fill effect (--origin-x/y/size/scale) is driven by js/animations.js. */
 .verticals-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  height: 52px;
-  padding: 0 1.7rem;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 15rem;
+  padding: 1.08rem 2rem;
+  font-family: var(--f-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   border-radius: 999px;
-  background: var(--accent);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  border: 1px solid rgba(10, 37, 64, 0.16);
+  box-shadow: 0 16px 30px rgba(10, 37, 64, 0.1);
   overflow: hidden;
   isolation: isolate;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+}
+.verticals-btn::before {
+  content: '';
+  position: absolute;
+  left: var(--origin-x, 50%);
+  top: var(--origin-y, 50%);
+  width: var(--origin-size, 0px);
+  height: var(--origin-size, 0px);
+  border-radius: 50%;
+  background: #222425;
+  transform: translate(-50%, -50%) scale(var(--origin-scale, 0));
+  transform-origin: center;
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+.verticals-btn:hover,
+.immersive-card:focus-visible .verticals-btn {
+  color: var(--white);
+  border-color: #222425;
+  box-shadow: 0 20px 40px rgba(10, 37, 64, 0.18);
+  transform: translateY(-2px);
+}
+.immersive-card:focus-visible .verticals-btn {
+  --origin-scale: 1;
 }
 .verticals-btn-label,
 .verticals-btn-icon {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 .verticals-btn-label {
-  font-family: var(--f-display);
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--white);
   white-space: nowrap;
 }
 .verticals-btn-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--white);
+  color: inherit;
 }
 .verticals-btn-icon svg {
   width: 19px;
   height: 19px;
   transition: transform 0.35s ease;
 }
-.verticals-btn-wave {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  width: 340px;
-  height: 340px;
-  background: var(--text);
-  border-radius: 42% 58% 55% 45% / 45% 42% 58% 55%;
-  bottom: -360px;
-  transform: translateX(-50%) rotate(0deg);
-  transition: bottom 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-  animation: verticals-wave-spin 6s linear infinite;
-  animation-play-state: paused;
-}
-.verticals-btn-wave.wave-2 {
-  background: rgba(10, 37, 64, 0.6);
-  animation-duration: 9s;
-  animation-direction: reverse;
-}
-.immersive-card:hover .verticals-btn-wave,
-.immersive-card:focus-visible .verticals-btn-wave,
-.immersive-card.is-hover-open .verticals-btn-wave,
-.immersive-card.is-opening .verticals-btn-wave,
-.immersive-card.is-pressed .verticals-btn-wave {
-  bottom: -294px;
-  animation-play-state: running;
-}
-.immersive-card:hover .verticals-btn-wave.wave-2,
-.immersive-card:focus-visible .verticals-btn-wave.wave-2,
-.immersive-card.is-hover-open .verticals-btn-wave.wave-2,
-.immersive-card.is-opening .verticals-btn-wave.wave-2,
-.immersive-card.is-pressed .verticals-btn-wave.wave-2 {
-  bottom: -304px;
-}
-.immersive-card:hover .verticals-btn-icon svg,
-.immersive-card:focus-visible .verticals-btn-icon svg,
-.immersive-card.is-hover-open .verticals-btn-icon svg,
-.immersive-card.is-opening .verticals-btn-icon svg,
-.immersive-card.is-pressed .verticals-btn-icon svg {
+.verticals-btn:hover .verticals-btn-icon svg {
   transform: translateX(3px);
-}
-@keyframes verticals-wave-spin {
-  from { transform: translateX(-50%) rotate(0deg); }
-  to   { transform: translateX(-50%) rotate(360deg); }
 }
 
 /* ── nav row: arrows left, dots alongside */

@@ -22,7 +22,7 @@
   const hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   let activeIndex = 0;
   let dots = [];
-  const CLICK_OPEN_DELAY = 1800;
+  const CLICK_OPEN_DELAY = 320;
   const HOVER_OPEN_DELAY = 1400;
 
   function perPage() {
