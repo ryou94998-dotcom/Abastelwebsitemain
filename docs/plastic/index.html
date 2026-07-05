@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="../css/style.css" />
   <style>
 
-    /* ── PAGE HERO WITH BACKGROUND IMAGE ── */
+    /* ── HERO — recycling "flow" theme (layout mirrors telecom hero) ── */
     .plastic-hero {
       position: relative;
-      min-height: 520px;
+      min-height: clamp(520px, 76vh, 740px);
       display: flex;
-      align-items: center;
       overflow: hidden;
       background: #0a1628;
+      color: #fff;
     }
     .plastic-hero-bg {
       position: absolute;
@@ -23,18 +23,64 @@
       background-image: url('../Media/Banner%20images/Plastic%20granule%20Banner.PNG');
       background-size: cover;
       background-position: center;
-      opacity: 0.6;
+      opacity: 0.5;
     }
-    .plastic-hero-overlay {
+    .plastic-hero-scrim {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(0,10,30,0.7) 40%, rgba(0,10,30,0.15) 100%);
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(10,22,40,0.25) 0%, rgba(10,22,40,0.55) 55%, rgba(10,22,40,0.92) 100%),
+        linear-gradient(90deg, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.35) 55%, rgba(10,22,40,0.1) 100%);
     }
-    .plastic-hero-content {
+    /* Animated recycling flow pulse lines */
+    .flow-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    .flow-lines svg { width: 100%; height: 100%; display: block; }
+    .flow-base { fill: none; stroke: rgba(120,200,150,0.26); stroke-width: 1.3; }
+    .flow-pulse {
+      fill: none;
+      stroke: #6fe0a0;
+      stroke-width: 2;
+      stroke-linecap: round;
+      opacity: 0.9;
+      stroke-dasharray: 2 48;
+      filter: drop-shadow(0 0 4px rgba(111,224,160,0.7));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .flow-pulse.p1 { animation: flowMove 5.5s linear infinite; }
+      .flow-pulse.p2 { animation: flowMove 7s linear infinite; animation-delay: -2.5s; }
+      .flow-pulse.p3 { animation: flowMove 8.5s linear infinite; animation-delay: -4.5s; }
+    }
+    @keyframes flowMove { to { stroke-dashoffset: -1000; } }
+
+    .plastic-hero-inner {
       position: relative;
       z-index: 2;
-      padding: 6rem 0 5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: calc(var(--nav-h) + 1.6rem);
+      padding-bottom: 3rem;
     }
+    .plastic-hero .breadcrumb { color: rgba(255,255,255,0.5); margin: 0; }
+    .plastic-hero .breadcrumb a { color: rgba(255,255,255,0.5); }
+    .plastic-hero .breadcrumb a:hover { color: #fff; }
+    .plastic-hero .breadcrumb .sep { opacity: 0.4; }
+
+    .plastic-hero-main { max-width: 640px; margin-top: auto; margin-bottom: auto; }
+    .plastic-hero-main .tag { color: rgba(255,255,255,0.55); }
+    .plastic-hero-main .display-xl { color: #fff; margin-top: 1rem; }
+    .plastic-hero-main .body-lg { color: rgba(255,255,255,0.58); max-width: 560px; margin-top: 1.4rem; }
+    .plastic-hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2rem; }
+    .plastic-hero-actions .btn-outline { color: #fff; border-color: rgba(255,255,255,0.4); }
+    .plastic-hero-actions .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
     /* ── INTRO SPLIT (image left, text right) ── */
     .intro-split {
@@ -146,10 +192,78 @@
       display: block;
     }
 
+    /* ── ZOOMABLE IMAGES ── */
+    .zoomable { cursor: zoom-in; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      animation: lbIn 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10000;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--f-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: rgba(0,0,0,0.5);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .intro-split { grid-template-columns: 1fr; }
       .process-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .plastic-hero-actions .btn,
+      .plastic-hero-actions .btn-outline { flex: 1 1 10rem; justify-content: center; text-align: center; }
     }
     @media (max-width: 600px) {
       .process-cards { grid-template-columns: 1fr; }
@@ -159,28 +273,36 @@
 </head>
 <body data-page="plastic">
 
-  <!-- ── HERO WITH BACKGROUND IMAGE ── -->
+  <!-- ── HERO — recycling "flow" theme ── -->
   <section class="plastic-hero">
     <div class="plastic-hero-bg"></div>
-    <div class="plastic-hero-overlay"></div>
-    <div class="container plastic-hero-content fade-up">
-      <div class="breadcrumb">
-        <a href="../index.html" style="color:rgba(255,255,255,0.5)">Home</a>
-        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
-        <span style="color:rgba(255,255,255,0.5)">Verticals</span>
-        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
-        <span style="color:rgba(255,255,255,0.7)">Plastic Granules & Recycling</span>
+    <div class="flow-lines" aria-hidden="true">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="none">
+        <path class="flow-base" d="M-100,470 C250,380 520,560 1540,240" />
+        <path class="flow-pulse p1" d="M-100,470 C250,380 520,560 1540,240" />
+        <path class="flow-base" d="M-100,600 C380,500 700,660 1540,380" />
+        <path class="flow-pulse p2" d="M-100,600 C380,500 700,660 1540,380" />
+        <path class="flow-base" d="M-100,260 C330,180 640,320 1540,90" />
+        <path class="flow-pulse p3" d="M-100,260 C330,180 640,320 1540,90" />
+      </svg>
+    </div>
+    <div class="plastic-hero-scrim"></div>
+
+    <div class="container plastic-hero-inner">
+      <div class="breadcrumb fade-up">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span> Verticals
+        <span class="sep">/</span> Plastic Granules & Recycling
       </div>
-      <p class="tag" style="margin-top:1.5rem">Vertical — Plastic Solutions</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem;color:#fff">
-        Waste in.<br>Value out.
-      </h1>
-      <p class="body-lg" style="color:rgba(255,255,255,0.58);max-width:560px;margin-top:1.5rem">
-        Manufacturing premium-grade recycled plastic granules from post-industrial and post-consumer waste — reducing environmental impact without compromising quality.
-      </p>
-      <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
-        <a href="../contact/" class="btn btn-primary">Request a Quote →</a>
-        <a href="#process" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);">Our Process</a>
+
+      <div class="plastic-hero-main fade-up">
+        <p class="tag">Vertical — Plastic Solutions</p>
+        <h1 class="display-xl">Waste in.<br>Value out.</h1>
+        <p class="body-lg">Manufacturing premium-grade recycled plastic granules from post-industrial and post-consumer waste — reducing environmental impact without compromising quality.</p>
+        <div class="plastic-hero-actions">
+          <a href="../contact/" class="btn btn-primary">Request a Quote →</a>
+          <a href="#process" class="btn btn-outline">Our Process</a>
+        </div>
       </div>
     </div>
   </section>
@@ -189,7 +311,7 @@
   <section class="section">
     <div class="container">
       <div class="intro-split fade-up" style="margin-bottom: var(--space-xl);">
-        <div class="intro-split-img">
+        <div class="intro-split-img zoomable">
           <img src="../Plastic Images/types of granule .jpeg" alt="Types of Plastic Granules — PP, ABS, HDPE, LDPE, PVC, PET" />
         </div>
         <div class="intro-split-text">
@@ -221,7 +343,7 @@
       </div>
       <div class="process-cards">
         <div class="process-card fade-up">
-          <div class="process-card-img">
+          <div class="process-card-img zoomable">
             <img src="../Plastic Images/Step 1 .jpeg" alt="Waste Collection & Sorting" />
           </div>
           <div class="process-card-body">
@@ -231,7 +353,7 @@
           </div>
         </div>
         <div class="process-card fade-up">
-          <div class="process-card-img">
+          <div class="process-card-img zoomable">
             <img src="../Plastic Images/Step 2 .jpeg" alt="Washing & Grinding" />
           </div>
           <div class="process-card-body">
@@ -241,7 +363,7 @@
           </div>
         </div>
         <div class="process-card fade-up">
-          <div class="process-card-img">
+          <div class="process-card-img zoomable">
             <img src="../Plastic Images/step 3.jpeg" alt="Melting, Extrusion & Granules" />
           </div>
           <div class="process-card-body">
@@ -257,7 +379,7 @@
         <p class="tag">From Granules to Products</p>
         <h2 class="display-md">Where our recycled granules end up.</h2>
       </div>
-      <div class="showcase-img fade-up">
+      <div class="showcase-img zoomable fade-up">
         <img src="../Plastic Images/Products made from recycled plastic .jpeg" alt="Products Made From Recycled Plastic Granules" />
       </div>
     </div>
@@ -270,27 +392,45 @@
         <p class="tag">Industries Served</p>
         <h2 class="display-md">Where our granules go.</h2>
       </div>
-      <div class="grid-4">
-        <div class="card fade-up">
+      <div class="tilt-card-group grid-3">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.111 16.404a5.5 5.5 0 0 1 7.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">01 / Telecom</p>
           <h3>Telecom</h3>
           <p>Enclosures, housings, and moulded parts for fiber and cable management systems.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Networks</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">02 / Automotive</p>
           <h3>Automotive</h3>
           <p>Interior and under-hood plastic components for OEM supply chains.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>OEM supply</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">03 / Consumer</p>
           <h3>Consumer & Packaging</h3>
           <p>Housings, product parts, and packaging components for consumer goods manufacturers.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Goods & packaging</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
       </div>
     </div>
@@ -307,7 +447,47 @@
     </div>
   </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+    <img id="lbImg" src="" alt="" />
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
+
   <script src="../js/shared.js"></script>
   <script src="../js/animations.js"></script>
+  <script>
+    (function () {
+      const lb        = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose   = document.getElementById('lbClose');
+
+      function openLightbox(src, caption) {
+        lbImg.src = src;
+        lbImg.alt = caption || '';
+        lbCaption.textContent = caption || '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      // Any .zoomable image opens full-size on click.
+      document.querySelectorAll('.zoomable').forEach(el => {
+        el.addEventListener('click', () => {
+          const img = el.querySelector('img');
+          if (img) openLightbox(img.src, img.alt);
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    })();
+  </script>
 </body>
 </html>

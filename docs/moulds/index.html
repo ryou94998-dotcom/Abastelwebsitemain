@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="../css/style.css" />
   <style>
 
-    /* ── HERO WITH BACKGROUND IMAGE ── */
+    /* ── HERO — machining "toolpath" theme (layout mirrors telecom hero) ── */
     .moulds-hero {
       position: relative;
-      min-height: 540px;
+      min-height: clamp(540px, 76vh, 740px);
       display: flex;
-      align-items: center;
       overflow: hidden;
       background: #0d0d0d;
+      color: #fff;
     }
     .moulds-hero-bg {
       position: absolute;
@@ -23,19 +23,65 @@
       background-image: url('../Media/Banner%20images/Moulds%20and%20machinng%20banner.png');
       background-size: cover;
       background-position: center;
-      opacity: 0.45;
+      opacity: 0.4;
     }
-    .moulds-hero-overlay {
+    .moulds-hero-scrim {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(0,0,0,0.75) 40%, rgba(0,0,0,0.15) 100%);
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(13,13,13,0.25) 0%, rgba(13,13,13,0.55) 55%, rgba(13,13,13,0.92) 100%),
+        linear-gradient(90deg, rgba(13,13,13,0.9) 0%, rgba(13,13,13,0.35) 55%, rgba(13,13,13,0.1) 100%);
     }
-    .moulds-hero-content {
+    /* Animated CNC toolpath pulse lines */
+    .toolpath-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    .toolpath-lines svg { width: 100%; height: 100%; display: block; }
+    .toolpath-base { fill: none; stroke: rgba(185,190,200,0.26); stroke-width: 1.2; }
+    .toolpath-pulse {
+      fill: none;
+      stroke: #ffb570;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.9;
+      stroke-dasharray: 3 62;
+      filter: drop-shadow(0 0 4px rgba(255,181,112,0.7));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .toolpath-pulse.p1 { animation: toolFlow 5.5s linear infinite; }
+      .toolpath-pulse.p2 { animation: toolFlow 7s linear infinite; animation-delay: -2.5s; }
+      .toolpath-pulse.p3 { animation: toolFlow 8.5s linear infinite; animation-delay: -4.5s; }
+    }
+    @keyframes toolFlow { to { stroke-dashoffset: -1300; } }
+
+    .moulds-hero-inner {
       position: relative;
       z-index: 2;
-      padding: 7rem 0 5rem;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: calc(var(--nav-h) + 1.6rem);
+      padding-bottom: 3rem;
     }
+    .moulds-hero .breadcrumb { color: rgba(255,255,255,0.5); margin: 0; }
+    .moulds-hero .breadcrumb a { color: rgba(255,255,255,0.5); }
+    .moulds-hero .breadcrumb a:hover { color: #fff; }
+    .moulds-hero .breadcrumb .sep { opacity: 0.4; }
+
+    .moulds-hero-main { max-width: 640px; margin-top: auto; margin-bottom: auto; }
+    .moulds-hero-main .tag { color: rgba(255,255,255,0.55); }
+    .moulds-hero-main .display-xl { color: #fff; margin-top: 1rem; }
+    .moulds-hero-main .body-lg { color: rgba(255,255,255,0.65); max-width: 520px; margin-top: 1.4rem; }
+    .moulds-hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2rem; }
+    .moulds-hero-actions .btn-outline { color: #fff; border-color: rgba(255,255,255,0.4); }
+    .moulds-hero-actions .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
     /* ── INTRO SPLIT (image left, text right) ── */
     .intro-split {
@@ -113,18 +159,78 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.62));
-      padding: 1.2rem 1rem 0.7rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.78));
+      padding: 1.6rem 1rem 0.75rem;
       font-family: var(--f-display);
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      opacity: 0;
-      transition: opacity 0.3s;
+      color: #fff;
+      opacity: 1;
     }
-    .photo-strip-item:hover .photo-strip-label { opacity: 1; }
+    .photo-strip-item { cursor: zoom-in; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      animation: lbIn 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10000;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--f-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: rgba(0,0,0,0.5);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
 
     /* ── CAPABILITY CARDS (icon + image + text) ── */
     .cap-grid {
@@ -277,6 +383,10 @@
       }
       .photo-strip-item.tall { grid-row: span 1; min-height: 200px; }
     }
+    @media (max-width: 640px) {
+      .moulds-hero-actions .btn,
+      .moulds-hero-actions .btn-outline { flex: 1 1 10rem; justify-content: center; text-align: center; }
+    }
     @media (max-width: 600px) {
       .cap-grid { grid-template-columns: 1fr; }
       .mould-type-card { grid-template-columns: 1fr; }
@@ -288,25 +398,36 @@
 </head>
 <body data-page="moulds">
 
-  <!-- ── HERO WITH REAL BACKGROUND IMAGE ── -->
+  <!-- ── HERO — machining "toolpath" theme ── -->
   <section class="moulds-hero">
     <div class="moulds-hero-bg"></div>
-    <div class="moulds-hero-overlay"></div>
-    <div class="container moulds-hero-content fade-up">
-      <div class="breadcrumb" style="color:rgba(255,255,255,0.4);margin-bottom:var(--space-s);">
-        <a href="../index.html" style="color:rgba(255,255,255,0.4);">Home</a>
-        <span class="sep">/</span>Verticals<span class="sep">/</span>Moulds & Machining
+    <div class="toolpath-lines" aria-hidden="true">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="none">
+        <path class="toolpath-base" d="M-100,430 H300 Q340,430 340,390 V300 Q340,260 380,260 H760 Q800,260 800,300 V520 Q800,560 840,560 H1540" />
+        <path class="toolpath-pulse p1" d="M-100,430 H300 Q340,430 340,390 V300 Q340,260 380,260 H760 Q800,260 800,300 V520 Q800,560 840,560 H1540" />
+        <path class="toolpath-base" d="M-100,600 H500 Q540,600 540,560 V480 Q540,440 580,440 H1540" />
+        <path class="toolpath-pulse p2" d="M-100,600 H500 Q540,600 540,560 V480 Q540,440 580,440 H1540" />
+        <path class="toolpath-base" d="M-100,180 H250 Q290,180 290,220 V340 Q290,380 330,380 H700 Q740,380 740,340 V150 Q740,130 780,130 H1540" />
+        <path class="toolpath-pulse p3" d="M-100,180 H250 Q290,180 290,220 V340 Q290,380 330,380 H700 Q740,380 740,340 V150 Q740,130 780,130 H1540" />
+      </svg>
+    </div>
+    <div class="moulds-hero-scrim"></div>
+
+    <div class="container moulds-hero-inner">
+      <div class="breadcrumb fade-up">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span> Verticals
+        <span class="sep">/</span> Moulds & Machining
       </div>
-      <p class="tag" style="color:rgba(255,255,255,0.55);">Vertical — Moulds & Machining</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem;color:#fff;">
-        Shaped to<br>perfection.
-      </h1>
-      <p class="body-lg" style="color:rgba(255,255,255,0.65);max-width:520px;margin-top:1.5rem;">
-        Precision injection moulding, CNC machining, and custom mould fabrication — all under one roof in Delhi.
-      </p>
-      <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
-        <a href="../contact/" class="btn btn-primary">Request a Quote →</a>
-        <a href="#capabilities" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);">Our Capabilities</a>
+
+      <div class="moulds-hero-main fade-up">
+        <p class="tag">Vertical — Moulds & Machining</p>
+        <h1 class="display-xl">Shaped to<br>perfection.</h1>
+        <p class="body-lg">Precision injection moulding, CNC machining, and custom mould fabrication — all under one roof in Delhi.</p>
+        <div class="moulds-hero-actions">
+          <a href="../contact/" class="btn btn-primary">Request a Quote →</a>
+          <a href="#capabilities" class="btn btn-outline">Our Capabilities</a>
+        </div>
       </div>
     </div>
   </section>
@@ -530,27 +651,45 @@
         <p class="tag">Why Choose Us</p>
         <h2 class="display-md">What sets our moulding apart.</h2>
       </div>
-      <div class="grid-3">
-        <div class="card fade-up">
+      <div class="tilt-card-group grid-3">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">01 / In-House</p>
           <h3>In-House Toolroom</h3>
           <p>We build and maintain moulds in-house — faster turnarounds, lower costs, and complete control over tool quality from day one.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Full tool control</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">02 / Speed</p>
           <h3>Fast Prototyping</h3>
           <p>Need a sample before committing to a production tool? Our CNC team can deliver first-off samples within days, not weeks.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Days, not weeks</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">03 / Quality</p>
           <h3>100% QC Before Dispatch</h3>
           <p>Every batch is dimensionally verified and visually inspected before leaving the facility. Non-conforming parts never ship.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Zero defects shipped</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
       </div>
     </div>
@@ -567,7 +706,49 @@
     </div>
   </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+    <img id="lbImg" src="" alt="" />
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
+
   <script src="../js/shared.js"></script>
   <script src="../js/animations.js"></script>
+  <script>
+    (function () {
+      const lb        = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose   = document.getElementById('lbClose');
+
+      function openLightbox(src, caption) {
+        lbImg.src = src;
+        lbImg.alt = caption || '';
+        lbCaption.textContent = caption || '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      // "From the shop floor" gallery images open full-size on click.
+      document.querySelectorAll('.photo-strip-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const img = item.querySelector('img');
+          if (!img) return;
+          const label = item.querySelector('.photo-strip-label');
+          openLightbox(img.src, label ? label.textContent.trim() : img.alt);
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    })();
+  </script>
 </body>
 </html>

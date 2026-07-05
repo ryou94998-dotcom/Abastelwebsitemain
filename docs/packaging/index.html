@@ -7,14 +7,14 @@
   <meta name="description" content="Abastel's industrial and consumer packaging solutions — built for durability, brand presentation, and supply chain efficiency." />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
-    /* ── PAGE HERO WITH BACKGROUND IMAGE ── */
+    /* ── HERO — conveyor "parcel" theme (layout mirrors telecom hero) ── */
     .packaging-hero {
       position: relative;
-      min-height: 520px;
+      min-height: clamp(520px, 76vh, 740px);
       display: flex;
-      align-items: center;
       overflow: hidden;
       background: #0a1628;
+      color: #fff;
     }
     .packaging-hero-bg {
       position: absolute;
@@ -22,18 +22,64 @@
       background-image: url('../Media/Banner%20images/Packaging.PNG');
       background-size: cover;
       background-position: center;
-      opacity: 0.6;
+      opacity: 0.5;
     }
-    .packaging-hero-overlay {
+    .packaging-hero-scrim {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(0,10,30,0.7) 40%, rgba(0,10,30,0.15) 100%);
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(10,22,40,0.25) 0%, rgba(10,22,40,0.55) 55%, rgba(10,22,40,0.92) 100%),
+        linear-gradient(90deg, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.35) 55%, rgba(10,22,40,0.1) 100%);
     }
-    .packaging-hero-content {
+    /* Animated conveyor pulse lines */
+    .parcel-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    .parcel-lines svg { width: 100%; height: 100%; display: block; }
+    .parcel-base { fill: none; stroke: rgba(220,190,140,0.24); stroke-width: 1.3; }
+    .parcel-pulse {
+      fill: none;
+      stroke: #e0b070;
+      stroke-width: 2;
+      stroke-linecap: round;
+      opacity: 0.9;
+      stroke-dasharray: 2 48;
+      filter: drop-shadow(0 0 4px rgba(224,176,112,0.7));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .parcel-pulse.p1 { animation: parcelMove 5.5s linear infinite; }
+      .parcel-pulse.p2 { animation: parcelMove 7s linear infinite; animation-delay: -2.5s; }
+      .parcel-pulse.p3 { animation: parcelMove 8.5s linear infinite; animation-delay: -4.5s; }
+    }
+    @keyframes parcelMove { to { stroke-dashoffset: -1000; } }
+
+    .packaging-hero-inner {
       position: relative;
       z-index: 2;
-      padding: 6rem 0 5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: calc(var(--nav-h) + 1.6rem);
+      padding-bottom: 3rem;
     }
+    .packaging-hero .breadcrumb { color: rgba(255,255,255,0.5); margin: 0; }
+    .packaging-hero .breadcrumb a { color: rgba(255,255,255,0.5); }
+    .packaging-hero .breadcrumb a:hover { color: #fff; }
+    .packaging-hero .breadcrumb .sep { opacity: 0.4; }
+
+    .packaging-hero-main { max-width: 640px; margin-top: auto; margin-bottom: auto; }
+    .packaging-hero-main .tag { color: rgba(255,255,255,0.55); }
+    .packaging-hero-main .display-xl { color: #fff; margin-top: 1rem; }
+    .packaging-hero-main .body-lg { color: rgba(255,255,255,0.58); max-width: 540px; margin-top: 1.4rem; }
+    .packaging-hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2rem; }
+    .packaging-hero-actions .btn-outline { color: #fff; border-color: rgba(255,255,255,0.4); }
+    .packaging-hero-actions .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
     /* ── INTRO SPLIT (image left, text right) ── */
     .intro-split {
@@ -94,36 +140,112 @@
       display: block;
     }
 
+    /* ── ZOOMABLE IMAGES ── */
+    .zoomable { cursor: zoom-in; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      animation: lbIn 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 10000;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--f-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: rgba(0,0,0,0.5);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .intro-split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .packaging-hero-actions .btn,
+      .packaging-hero-actions .btn-outline { flex: 1 1 10rem; justify-content: center; text-align: center; }
     }
   </style>
 </head>
 <body data-page="packaging">
 
-  <!-- ── HERO WITH BACKGROUND IMAGE ── -->
+  <!-- ── HERO — conveyor "parcel" theme ── -->
   <section class="packaging-hero">
     <div class="packaging-hero-bg"></div>
-    <div class="packaging-hero-overlay"></div>
-    <div class="container packaging-hero-content fade-up">
-      <div class="breadcrumb">
-        <a href="../index.html" style="color:rgba(255,255,255,0.5)">Home</a>
-        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
-        <span style="color:rgba(255,255,255,0.5)">Verticals</span>
-        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
-        <span style="color:rgba(255,255,255,0.7)">Packaging</span>
+    <div class="parcel-lines" aria-hidden="true">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="none">
+        <path class="parcel-base" d="M-100,470 C250,380 520,560 1540,240" />
+        <path class="parcel-pulse p1" d="M-100,470 C250,380 520,560 1540,240" />
+        <path class="parcel-base" d="M-100,600 C380,500 700,660 1540,380" />
+        <path class="parcel-pulse p2" d="M-100,600 C380,500 700,660 1540,380" />
+        <path class="parcel-base" d="M-100,260 C330,180 640,320 1540,90" />
+        <path class="parcel-pulse p3" d="M-100,260 C330,180 640,320 1540,90" />
+      </svg>
+    </div>
+    <div class="packaging-hero-scrim"></div>
+
+    <div class="container packaging-hero-inner">
+      <div class="breadcrumb fade-up">
+        <a href="../index.html">Home</a>
+        <span class="sep">/</span> Verticals
+        <span class="sep">/</span> Packaging
       </div>
-      <p class="tag" style="margin-top:1.5rem">Vertical — Packaging</p>
-      <h1 class="display-xl" style="max-width:680px;margin-top:1rem;color:#fff">
-        Protected in transit.<br>Presented on shelf.
-      </h1>
-      <p class="body-lg" style="color:rgba(255,255,255,0.58);max-width:540px;margin-top:1.5rem">
-        Industrial and consumer packaging solutions that protect your product and build your brand.
-      </p>
-      <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
-        <a href="../contact/" class="btn btn-primary">Request a Quote →</a>
-        <a href="#process" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);">See Our Process</a>
+
+      <div class="packaging-hero-main fade-up">
+        <p class="tag">Vertical — Packaging</p>
+        <h1 class="display-xl">Protected in transit.<br>Presented on shelf.</h1>
+        <p class="body-lg">Industrial and consumer packaging solutions that protect your product and build your brand.</p>
+        <div class="packaging-hero-actions">
+          <a href="../contact/" class="btn btn-primary">Request a Quote →</a>
+          <a href="#process" class="btn btn-outline">See Our Process</a>
+        </div>
       </div>
     </div>
   </section>
@@ -132,7 +254,7 @@
   <section class="section">
     <div class="container">
       <div class="intro-split fade-up">
-        <div class="intro-split-img">
+        <div class="intro-split-img zoomable">
           <img src="../Packaging%20Images/2.jpeg" alt="Corrugation box manufacturing factory — Abastel packaging facility" />
         </div>
         <div class="intro-split-text">
@@ -165,22 +287,22 @@
         <h2 class="display-md">From kraft paper to finished carton.</h2>
       </div>
       <div class="process-gallery">
-        <div class="showcase-img fade-up">
+        <div class="showcase-img zoomable fade-up">
           <img src="../Packaging%20Images/1.jpeg" alt="Corrugated box manufacturing — strong, reliable, sustainable" />
         </div>
-        <div class="showcase-img fade-up">
+        <div class="showcase-img zoomable fade-up">
           <img src="../Packaging%20Images/4.jpeg" alt="From kraft paper to strong sheets — corrugating, cutting, pasting" />
         </div>
-        <div class="showcase-img fade-up">
+        <div class="showcase-img zoomable fade-up">
           <img src="../Packaging%20Images/5.jpeg" alt="Corrugating, cutting and slotting" />
         </div>
-        <div class="showcase-img fade-up">
+        <div class="showcase-img zoomable fade-up">
           <img src="../Packaging%20Images/6.jpeg" alt="Printing, pasting and stitching" />
         </div>
-        <div class="showcase-img fade-up">
+        <div class="showcase-img zoomable fade-up">
           <img src="../Packaging%20Images/3.jpeg" alt="Finished corrugated boxes on the production line" />
         </div>
-        <div class="showcase-img fade-up">
+        <div class="showcase-img zoomable fade-up">
           <img src="../Packaging%20Images/7.jpeg" alt="Final inspection and dispatch" />
         </div>
       </div>
@@ -194,48 +316,84 @@
         <p class="tag">Product Range</p>
         <h2 class="display-md">What we produce.</h2>
       </div>
-      <div class="grid-3">
-        <div class="card fade-up">
+      <div class="tilt-card-group grid-3">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">01 / Shipping</p>
           <h3>Corrugated Shipping Boxes</h3>
           <p>Heavy-duty corrugated boxes in standard and custom sizes for industrial and e-commerce shipping.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Industrial & e-commerce</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">02 / Retail</p>
           <h3>Retail Boxes & Cartons</h3>
           <p>Consumer-grade folding cartons with full-colour printing. Custom die-cuts and finishes available.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Full-colour printing</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">03 / Thermoform</p>
           <h3>Plastic Blister & Clamshell</h3>
           <p>PVC and PET thermoformed blisters for hardware, electronics, and consumer products.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>PVC & PET</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">04 / Labels</p>
           <h3>Labels & Stickers</h3>
           <p>Product labels, barcodes, QR codes, and custom sticker printing. Durable materials for harsh environments.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Barcodes & QR</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">05 / Cushioning</p>
           <h3>Foam & Cushioning Inserts</h3>
           <p>Custom-cut EPE, EVA, and polyurethane foam inserts for fragile product protection.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>EPE / EVA / PU</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">06 / OEM</p>
           <h3>OEM Packaging Solutions</h3>
           <p>Full packaging design and production for OEM customers — from concept through to batch delivery.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Concept to batch</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
       </div>
     </div>
@@ -248,27 +406,45 @@
         <p class="tag">Why Choose Us</p>
         <h2 class="display-md">Built to protect. Made to deliver.</h2>
       </div>
-      <div class="grid-3">
-        <div class="card fade-up">
+      <div class="tilt-card-group grid-3">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">01 / Design</p>
           <h3>In-House Design & Prototyping</h3>
           <p>From concept sketch to a physical sample in days — our design team works directly with your brand and product specs.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Sample in days</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">02 / Custom</p>
           <h3>Custom Sizes, Every Order</h3>
           <p>No fixed catalogue. Every box, carton, and insert is engineered to your product's exact dimensions.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Engineered to fit</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
-        <div class="card fade-up">
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
+          <p class="tilt-card-eyebrow">03 / Quality</p>
           <h3>Quality Checked, On Time</h3>
           <p>Every batch passes strength and dimension checks before dispatch, backed by reliable logistics partners.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Checked & on time</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
         </div>
       </div>
     </div>
@@ -285,7 +461,47 @@
     </div>
   </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+    <img id="lbImg" src="" alt="" />
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
+
   <script src="../js/shared.js"></script>
   <script src="../js/animations.js"></script>
+  <script>
+    (function () {
+      const lb        = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose   = document.getElementById('lbClose');
+
+      function openLightbox(src, caption) {
+        lbImg.src = src;
+        lbImg.alt = caption || '';
+        lbCaption.textContent = caption || '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      // Any .zoomable image opens full-size on click.
+      document.querySelectorAll('.zoomable').forEach(el => {
+        el.addEventListener('click', () => {
+          const img = el.querySelector('img');
+          if (img) openLightbox(img.src, img.alt);
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    })();
+  </script>
 </body>
 </html>
