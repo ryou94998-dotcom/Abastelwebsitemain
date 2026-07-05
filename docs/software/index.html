@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software & Digital — Abastel</title>
+  <meta name="description" content="Abastel's software vertical — custom software, websites, web & mobile apps, plus SEO and digital marketing to get them found. One team, from first line of code to first page of Google." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── PAGE HERO WITH BACKGROUND IMAGE ── */
+    .software-hero {
+      position: relative;
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #0a1628;
+    }
+    .software-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../Media/Banner%20images/Software.PNG');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5;
+      transform: scale(1.04);
+    }
+    .software-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(4,12,28,0.9) 28%, rgba(4,12,28,0.42) 72%, rgba(15,110,120,0.28) 100%);
+    }
+    .software-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 7rem 0 5.5rem;
+    }
+    .sw-hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.9rem;
+    }
+    .sw-chip {
+      font-family: var(--f-display);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      padding: 0.42rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .sw-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2.1rem;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--text);
+      border: 2px solid #fff;
+    }
+    .btn-white:hover { background: rgba(255,255,255,0.88); transform: translateY(-1px); box-shadow: 0 12px 26px rgba(0,0,0,0.28); }
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.45);
+    }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+
+    /* ── HOW-WE-BUILD DARK BAND ── */
+    .band-dark .card p { color: rgba(255,255,255,0.6); }
+    .sw-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-m);
+      margin-top: var(--space-l);
+      padding-top: var(--space-m);
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+    .sw-stats .stat-label { color: rgba(255,255,255,0.5); }
+    .sw-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: var(--space-m);
+    }
+    .sw-tech-pill {
+      font-family: var(--f-body);
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.72);
+      padding: 0.42rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .sw-tech-pill:hover { border-color: var(--accent); color: #fff; transform: translateY(-2px); }
+    .sw-tech-label {
+      font-family: var(--f-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin: var(--space-l) 0 0.4rem;
+    }
+
+    /* ── ENGAGEMENT / PROCESS LAYOUT ── */
+    .sw-process-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+      gap: var(--space-l);
+      align-items: start;
+    }
+    .sw-process-sticky { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+
+    @media (max-width: 900px) {
+      .sw-stats { grid-template-columns: 1fr 1fr; }
+      .sw-process-grid { grid-template-columns: 1fr; gap: var(--space-m); }
+      .sw-process-sticky { position: static; }
+    }
+    @media (max-width: 640px) {
+      .software-hero-content { padding: 6rem 0 4rem; }
+      .sw-hero-actions .btn { width: 100%; justify-content: center; }
+      .sw-stats { grid-template-columns: 1fr 1fr; gap: var(--space-s); }
+    }
+  </style>
+</head>
+<body data-page="software">
+
+  <!-- ── HERO ── -->
+  <section class="software-hero">
+    <div class="software-hero-bg"></div>
+    <div class="software-hero-overlay"></div>
+    <div class="container software-hero-content fade-up">
+      <div class="breadcrumb">
+        <a href="../index.html" style="color:rgba(255,255,255,0.5)">Home</a>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.5)">Verticals</span>
+        <span class="sep" style="color:rgba(255,255,255,0.3)">/</span>
+        <span style="color:rgba(255,255,255,0.7)">Software</span>
+      </div>
+      <p class="tag" style="margin-top:1.5rem;color:rgba(255,255,255,0.65)">Vertical — Software &amp; Digital</p>
+      <h1 class="display-xl" style="max-width:760px;margin-top:1rem;color:#fff">
+        Built to ship.<br>Built to rank.
+      </h1>
+      <p class="body-lg" style="color:rgba(255,255,255,0.62);max-width:560px;margin-top:1.5rem">
+        We build software for other companies — websites, web apps, and custom systems — and back it with SEO and digital marketing so the right people actually find it.
+      </p>
+      <div class="sw-hero-chips">
+        <span class="sw-chip">Custom Software</span>
+        <span class="sw-chip">Web &amp; Apps</span>
+        <span class="sw-chip">Mobile</span>
+        <span class="sw-chip">SEO</span>
+        <span class="sw-chip">Digital Marketing</span>
+      </div>
+      <div class="sw-hero-actions">
+        <a href="../contact/" class="btn btn-white">Start a Project →</a>
+        <a href="#services" class="btn btn-ghost">See What We Do</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OVERVIEW ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-row">
+        <div class="section-title fade-up">
+          <p class="tag">Overview</p>
+          <h2 class="display-md">Your software, our problem to solve.</h2>
+        </div>
+        <div class="section-body fade-up">
+          <p class="body-lg">
+            Abastel's software vertical brings the same end-to-end mindset we apply to manufacturing into digital products. We design, build, and maintain websites, web applications, and custom software for businesses that don't want to run an in-house engineering team.
+          </p>
+          <div class="divider"></div>
+          <p class="body-md">
+            Beyond development, we help clients get discovered — through search optimisation, performance tuning, and ongoing digital marketing. One team, from the first line of code to the first page of Google.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section class="section band" id="services">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="tag">What We Do</p>
+        <h2 class="display-md">Everything you need to build and grow online.</h2>
+      </div>
+      <div class="tilt-card-group grid-3">
+
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">01 / Build</p>
+          <h3>Custom Software</h3>
+          <p>Bespoke business systems, internal tools, and automation built around how your company actually works — not off-the-shelf compromises.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Made to fit</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">02 / Web</p>
+          <h3>Websites &amp; Web Apps</h3>
+          <p>Marketing sites, e-commerce storefronts, and full web applications — designed, built, deployed, and tuned for speed.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Design to deploy</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">03 / Mobile</p>
+          <h3>Mobile Apps</h3>
+          <p>iOS and Android applications, from first concept through to app-store launch — plus the updates that keep them alive.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>iOS &amp; Android</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">04 / Rank</p>
+          <h3>SEO</h3>
+          <p>Technical SEO, on-page optimisation, and content strategy to help your site rank for the searches that actually convert.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Get found</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">05 / Grow</p>
+          <h3>Digital Marketing</h3>
+          <p>Paid campaigns, social, and content marketing that drive qualified traffic and measurable, reportable growth.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Traffic that converts</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="card tilt-card fade-up">
+          <div class="tilt-card-sheen" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="tilt-card-eyebrow">06 / Support</p>
+          <h3>Maintenance &amp; Support</h3>
+          <p>Hosting, monitoring, bug fixes, and feature updates so your software keeps running — and keeps improving — after launch.</p>
+          <div class="tilt-card-footer" aria-hidden="true">
+            <span>Always-on care</span>
+            <span class="tilt-card-arrow">↗</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW WE BUILD (DARK) ── -->
+  <section class="section band-dark">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="tag">How We Build</p>
+        <h2 class="display-md">A small team that ships like a big one.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card fade-up">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+          </div>
+          <h3>Discovery first</h3>
+          <p>We understand your business, users, and goals before writing a line of code — so the build solves the real problem.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+          </div>
+          <h3>Ship in cycles</h3>
+          <p>Short, visible iterations mean you see progress early and can steer — instead of waiting months for a big reveal.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <h3>Own the outcome</h3>
+          <p>We don't hand off and disappear. From launch to growth, one team stays accountable for the result.</p>
+        </div>
+      </div>
+
+      <div class="sw-stats fade-up">
+        <div>
+          <div class="stat-num">24h</div>
+          <div class="stat-label">Avg. first response</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Code you own</div>
+        </div>
+        <div>
+          <div class="stat-num">3</div>
+          <div class="stat-label">Build phases</div>
+        </div>
+        <div>
+          <div class="stat-num">1</div>
+          <div class="stat-label">Team, end to end</div>
+        </div>
+      </div>
+
+      <p class="sw-tech-label">Tools we work with</p>
+      <div class="sw-tech fade-up">
+        <span class="sw-tech-pill">JavaScript</span>
+        <span class="sw-tech-pill">TypeScript</span>
+        <span class="sw-tech-pill">React</span>
+        <span class="sw-tech-pill">Node.js</span>
+        <span class="sw-tech-pill">Python</span>
+        <span class="sw-tech-pill">PHP</span>
+        <span class="sw-tech-pill">WordPress</span>
+        <span class="sw-tech-pill">Shopify</span>
+        <span class="sw-tech-pill">React Native</span>
+        <span class="sw-tech-pill">Flutter</span>
+        <span class="sw-tech-pill">PostgreSQL</span>
+        <span class="sw-tech-pill">REST &amp; APIs</span>
+        <span class="sw-tech-pill">Search Console</span>
+        <span class="sw-tech-pill">Analytics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section class="section">
+    <div class="container">
+      <div class="sw-process-grid">
+        <div class="sw-process-sticky fade-up">
+          <p class="tag">How We Work</p>
+          <h2 class="display-md">From brief to launch.</h2>
+          <p class="body-md" style="margin-top:1rem;max-width:340px">
+            A clear, four-step path that keeps you in the loop the whole way — no black boxes, no surprises at handover.
+          </p>
+          <a href="../contact/" class="btn btn-primary" style="margin-top:1.75rem">Tell Us Your Idea →</a>
+        </div>
+        <div class="process-list">
+          <div class="process-item fade-up">
+            <span class="process-num">01</span>
+            <div class="process-body">
+              <h3>Discovery &amp; Scoping</h3>
+              <p>We start by understanding your business, your users, and what success looks like — then agree scope, timeline, and cost up front.</p>
+            </div>
+          </div>
+          <div class="process-item fade-up">
+            <span class="process-num">02</span>
+            <div class="process-body">
+              <h3>Design &amp; Prototype</h3>
+              <p>We design the experience and put a working prototype in front of you early, so decisions are made on something real.</p>
+            </div>
+          </div>
+          <div class="process-item fade-up">
+            <span class="process-num">03</span>
+            <div class="process-body">
+              <h3>Build &amp; Iterate</h3>
+              <p>Development happens in short, visible cycles. You review progress often and steer the product as it takes shape.</p>
+            </div>
+          </div>
+          <div class="process-item fade-up">
+            <span class="process-num">04</span>
+            <div class="process-body">
+              <h3>Launch &amp; Grow</h3>
+              <p>We deploy, then keep optimising — through SEO, marketing, and ongoing support — so the product performs long after launch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <div class="highlight-band">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <h2 class="display-md">Have a software project in mind?</h2>
+        <p style="color:rgba(255,255,255,0.75);margin-top:0.5rem">Tell us what you're building and we'll get back to you within 24 hours.</p>
+      </div>
+      <a href="../contact/" class="btn btn-outline" style="white-space:nowrap;color:#fff;border-color:rgba(255,255,255,0.5)">Get in Touch →</a>
+    </div>
+  </div>
+
+  <script src="../js/shared.js"></script>
+  <script src="../js/animations.js"></script>
+</body>
+</html>

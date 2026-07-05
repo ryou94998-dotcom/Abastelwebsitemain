@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Abastel</title>
+  <meta name="description" content="Get in touch with Abastel for product enquiries, project quotations, partnership proposals, or to schedule a factory visit." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ─── CONTACT GRID (Aceternity-style dark card) ──────────────────── */
+    .contact-grid-section { padding: var(--space-xl) 0; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .contact-grid-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 0.85fr 1fr;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(160deg, #161616 0%, #0a0a0a 100%);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.14);
+      isolation: isolate;
+    }
+    /* faint dot-grid texture */
+    .contact-grid-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* cursor spotlight glow (zone registered in animations.js) */
+    .contact-grid-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(480px circle at var(--mx, 50%) var(--my, 50%), rgba(0,87,168,0.18), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .contact-grid-card:hover::after { opacity: 1; }
+    .contact-grid-info, .contact-grid-form { position: relative; z-index: 1; padding: var(--space-l) var(--space-m); }
+    .contact-grid-info { border-right: 1px solid rgba(255,255,255,0.1); }
+    .contact-grid-info .tag, .contact-grid-form .tag { color: var(--accent); }
+    .contact-grid-info h2, .contact-grid-form h2 { color: var(--white); margin: 0.6rem 0 0.8rem; }
+    .contact-grid-info > p.body-md { color: rgba(255,255,255,0.55); margin-bottom: var(--space-m); }
+
+    /* world map graphic (Media/world.svg) with a marker pinned on New Delhi */
+    .world-map { position: relative; width: 100%; aspect-ratio: 2000 / 857; margin-bottom: var(--space-m); }
+    .world-map img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.4; filter: brightness(0) invert(1); }
+    .world-map .map-marker {
+      position: absolute;
+      /* New Delhi: plotted from the IN path's bounding box in Media/world.svg (x:1412, y:316 of a 2000x857 viewBox) */
+      left: 70.6%;
+      top: 36.9%;
+      transform: translate(-50%, -50%);
+    }
+    .world-map .map-marker .dot { position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px 1px rgba(0,87,168,0.9); }
+    .world-map .map-marker .ring {
+      position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px;
+      border-radius: 50%; border: 1.5px solid rgba(0,87,168,0.9);
+      animation: node-ping 2.4s ease-out infinite;
+    }
+    .world-map .map-marker .map-label {
+      position: absolute;
+      top: -1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-family: var(--f-body);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.8);
+    }
+    @keyframes node-ping {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(4.2); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .world-map .map-marker .ring { animation: none; }
+    }
+
+    .contact-grid-info .info-row { margin-bottom: var(--space-m); }
+    .contact-grid-info .info-row .display-sm { color: var(--white); margin-bottom: 0.4rem; }
+    .contact-grid-info .info-row p.body-md { color: rgba(255,255,255,0.55); margin: 0; }
+    .contact-grid-info .info-row a { color: var(--accent); font-size: 0.95rem; }
+    .contact-grid-info .divider { background: rgba(255,255,255,0.1); }
+    .contact-grid-info .vertical-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .contact-grid-info .vertical-pills a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 0.35rem 0.8rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-grid-info .vertical-pills a:hover { border-color: var(--accent); color: var(--white); }
+
+    .contact-grid-form .form-group label { color: rgba(255,255,255,0.7); }
+    .contact-grid-form .form-group input,
+    .contact-grid-form .form-group select,
+    .contact-grid-form .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white);
+    }
+    .contact-grid-form .form-group input::placeholder,
+    .contact-grid-form .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .contact-grid-form .form-group select option { color: var(--text); }
+    .contact-grid-form .form-group input:focus,
+    .contact-grid-form .form-group select:focus,
+    .contact-grid-form .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,87,168,0.25);
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid-card { grid-template-columns: 1fr; }
+      .contact-grid-info { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    }
+  </style>
+</head>
+<body data-page="contact">
+
+  <section class="page-hero">
+    <div class="container fade-up">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span>Contact</div>
+      <p class="tag">Contact Us</p>
+      <h1 class="display-xl" style="max-width:680px;margin-top:1rem">
+        Let's work together.
+      </h1>
+      <p class="body-lg" style="color:rgba(255,255,255,0.6);max-width:540px;margin-top:1.5rem">
+        Product enquiry, project quote, partnership, or factory visit — we respond within 24 hours.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact-grid-section">
+    <div class="container">
+      <div class="contact-grid-card fade-up">
+
+        <!-- ── INFO ── -->
+        <div class="contact-grid-info">
+          <p class="tag">We are here</p>
+          <h2 class="display-md">Contact us</h2>
+          <p class="body-md">We're always looking for ways to improve our products and services. Reach out and let us know how we can help.</p>
+
+          <div class="world-map">
+            <img src="../Media/world.svg" alt="" />
+            <div class="map-marker">
+              <span class="map-label">New Delhi</span>
+              <span class="ring"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="display-sm">Email</div>
+            <a href="mailto:info@abastel.in">info@abastel.in</a>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="info-row">
+            <div class="display-sm">Registered Office</div>
+            <p class="body-md">Delhi, India</p>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="info-row">
+            <div class="display-sm">Manufacturing Facility</div>
+            <p class="body-md">Uttar Pradesh, India</p>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="info-row" style="margin-bottom: var(--space-s);">
+            <div class="display-sm">Response Time</div>
+            <p class="body-md">We typically respond within 24 hours on business days (Mon–Sat).</p>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="vertical-pills">
+            <a href="../telecom/">Telecom &amp; Fiber</a>
+            <a href="../plastic/">Plastic Granules</a>
+            <a href="../moulds/">Moulds &amp; Machining</a>
+            <a href="../packaging/">Packaging</a>
+            <a href="../aerospace/">Aerospace</a>
+            <a href="../factory-tour/">Factory Tour</a>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="footer-social">
+            <p class="footer-social-label">Connect With Us</p>
+            <!-- Placeholder social links — replace href="#" with Abastel's real profile URLs -->
+            <div class="social-tiles">
+              <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on X (Twitter)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+              </a>
+              <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on YouTube">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── FORM ── -->
+        <div class="contact-grid-form">
+          <p class="tag">Send a Message</p>
+          <h2 class="display-md">Let's talk</h2>
+          <!-- Replace ACTION with your Formspree endpoint: https://formspree.io/f/YOUR_ID -->
+          <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Rahul Sharma" required />
+              </div>
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" placeholder="Acme Telecom Pvt. Ltd." />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="rahul@company.com" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">Select a topic…</option>
+                <option value="telecom">Telecom & Fiber Products</option>
+                <option value="plastics">Plastic Moulds & Machining</option>
+                <option value="packaging">Packaging Solutions</option>
+                <option value="aerospace">Aerospace Components</option>
+                <option value="factory">Factory Visit / Audit</option>
+                <option value="partnership">Partnership / Distributorship</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your requirement — product type, quantity, timeline, or any specific specs…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/shared.js"></script>
+  <script src="../js/animations.js"></script>
+</body>
+</html>

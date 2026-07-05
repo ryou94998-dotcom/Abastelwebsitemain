@@ -5,25 +5,25 @@ const NAV_HTML = `
     <a href="../index.html" class="nav-logo" aria-label="Abastel home"><svg class="nav-logo-mark" viewBox="20 16 160 152" fill="none" aria-hidden="true"><path d="M100 16 L145.26 102 L106.63 102 L100 86 L93.37 102 L54.74 102 Z" fill="#0A2540"/><path d="M48.42 114 L88.4 114 L66 168 L20 168 Z" fill="#0A2540"/><path d="M111.6 114 L151.58 114 L180 168 L134 168 Z" fill="#0A2540"/><path d="M86.37 102 L113.63 102 L118.6 114 L81.4 114 Z" fill="#1F9DA8"/></svg>ABAS<span>TEL</span></a>
     <ul class="nav-links">
       <li><a href="../index.html" data-page="home">Home</a></li>
-      <li><a href="our-story.html" data-page="story">Our Story</a></li>
-      <li><a href="our-team.html" data-page="team">Our Team</a></li>
+      <li><a href="../our-story/" data-page="story">Our Story</a></li>
+      <li><a href="../our-team/" data-page="team">Our Team</a></li>
       <li class="nav-dropdown">
         <a href="#">Verticals ▾</a>
         <div class="dropdown-menu">
-          <a href="telecom.html">Telecom & Fiber</a>
-          <a href="plastic.html">Plastic Granules & Recycling</a>
-          <a href="moulds.html">Moulds & Machining</a>
-          <a href="packaging.html">Packaging</a>
-          <a href="aerospace.html">Aerospace</a>
-          <a href="ai.html">AI</a>
-          <a href="software.html">Software</a>
+          <a href="../telecom/">Telecom & Fiber</a>
+          <a href="../plastic/">Plastic Granules & Recycling</a>
+          <a href="../moulds/">Moulds & Machining</a>
+          <a href="../packaging/">Packaging</a>
+          <a href="../aerospace/">Aerospace</a>
+          <a href="../ai/">AI</a>
+          <a href="../software/">Software</a>
         </div>
       </li>
-      <li><a href="factory-tour.html" data-page="factory">Factory Tour</a></li>
-      <li><a href="gallery.html" data-page="gallery">Gallery</a></li>
-      <li><a href="contact.html" data-page="contact">Contact</a></li>
+      <li><a href="../factory-tour/" data-page="factory">Factory Tour</a></li>
+      <li><a href="../gallery/" data-page="gallery">Gallery</a></li>
+      <li><a href="../contact/" data-page="contact">Contact</a></li>
     </ul>
-    <a href="contact.html" class="nav-cta"><span class="nav-cta__label">Get in touch</span></a>
+    <a href="../contact/" class="nav-cta"><span class="nav-cta__label">Get in touch</span></a>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -31,18 +31,18 @@ const NAV_HTML = `
 </nav>
 <div class="mobile-menu" id="mobile-menu">
   <a href="../index.html">Home</a>
-  <a href="our-story.html">Our Story</a>
-  <a href="our-team.html">Our Team</a>
-  <a href="telecom.html">Telecom & Fiber</a>
-  <a href="plastic.html">Plastic Granules & Recycling</a>
-  <a href="moulds.html">Moulds & Machining</a>
-  <a href="packaging.html">Packaging</a>
-  <a href="aerospace.html">Aerospace</a>
-  <a href="ai.html">AI</a>
-  <a href="software.html">Software</a>
-  <a href="factory-tour.html">Factory Tour</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact Us</a>
+  <a href="../our-story/">Our Story</a>
+  <a href="../our-team/">Our Team</a>
+  <a href="../telecom/">Telecom & Fiber</a>
+  <a href="../plastic/">Plastic Granules & Recycling</a>
+  <a href="../moulds/">Moulds & Machining</a>
+  <a href="../packaging/">Packaging</a>
+  <a href="../aerospace/">Aerospace</a>
+  <a href="../ai/">AI</a>
+  <a href="../software/">Software</a>
+  <a href="../factory-tour/">Factory Tour</a>
+  <a href="../gallery/">Gallery</a>
+  <a href="../contact/">Contact Us</a>
 </div>`;
 
 const FOOTER_HTML = `
@@ -76,24 +76,24 @@ const FOOTER_HTML = `
       </div>
       <div class="footer-col">
         <h4>Company</h4>
-        <a href="our-story.html">Our Story</a>
-        <a href="our-team.html">Our Team</a>
-        <a href="factory-tour.html">Factory Tour</a>
-        <a href="gallery.html">Gallery</a>
+        <a href="../our-story/">Our Story</a>
+        <a href="../our-team/">Our Team</a>
+        <a href="../factory-tour/">Factory Tour</a>
+        <a href="../gallery/">Gallery</a>
       </div>
       <div class="footer-col">
         <h4>Verticals</h4>
-        <a href="telecom.html">Telecom & Fiber</a>
-        <a href="plastic.html">Plastic Granules</a>
-        <a href="moulds.html">Moulds & Machining</a>
-        <a href="packaging.html">Packaging</a>
-        <a href="aerospace.html">Aerospace</a>
-        <a href="ai.html">AI</a>
-        <a href="software.html">Software</a>
+        <a href="../telecom/">Telecom & Fiber</a>
+        <a href="../plastic/">Plastic Granules</a>
+        <a href="../moulds/">Moulds & Machining</a>
+        <a href="../packaging/">Packaging</a>
+        <a href="../aerospace/">Aerospace</a>
+        <a href="../ai/">AI</a>
+        <a href="../software/">Software</a>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
-        <a href="contact.html">Get in Touch</a>
+        <a href="../contact/">Get in Touch</a>
         <a href="mailto:info@abastel.in">info@abastel.in</a>
         <a href="#">Delhi, India</a>
       </div>
