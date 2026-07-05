@@ -1774,11 +1774,11 @@ ul { list-style: none; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  min-width: 15rem;
-  padding: 1.08rem 2rem;
+  gap: 0.4rem;
+  min-width: 10rem;
+  padding: 0.7rem 1.4rem;
   font-family: var(--f-display);
-  font-size: 0.95rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   border-radius: 999px;
@@ -1830,8 +1830,8 @@ ul { list-style: none; }
   color: inherit;
 }
 .verticals-btn-icon svg {
-  width: 19px;
-  height: 19px;
+  width: 15px;
+  height: 15px;
   transition: transform 0.35s ease;
 }
 .verticals-btn:hover .verticals-btn-icon svg {
