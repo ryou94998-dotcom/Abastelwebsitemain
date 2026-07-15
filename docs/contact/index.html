@@ -7,18 +7,22 @@
   <meta name="description" content="Get in touch with Abastel for product enquiries, project quotations, partnership proposals, or to schedule a factory visit." />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
-    /* ─── CONTACT GRID (Aceternity-style dark card) ──────────────────── */
+    /* ─── CONTACT BENTO (Aceternity-style dark cards) ─────────────────── */
     .contact-grid-section { padding: var(--space-xl) 0; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .contact-bento {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.25rem;
+    }
     .contact-grid-card {
       position: relative;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 0.85fr 1fr;
       border-radius: 20px;
       border: 1px solid rgba(255,255,255,0.12);
       background: linear-gradient(160deg, #161616 0%, #0a0a0a 100%);
       box-shadow: 0 24px 60px rgba(0,0,0,0.14);
       isolation: isolate;
+      padding: var(--space-m);
     }
     /* faint dot-grid texture */
     .contact-grid-card::before {
@@ -42,15 +46,20 @@
       z-index: 0;
     }
     .contact-grid-card:hover::after { opacity: 1; }
-    .contact-grid-info, .contact-grid-form { position: relative; z-index: 1; padding: var(--space-l) var(--space-m); }
-    .contact-grid-info { border-right: 1px solid rgba(255,255,255,0.1); }
-    .contact-grid-form { display: flex; flex-direction: column; justify-content: center; }
-    .contact-grid-info .tag, .contact-grid-form .tag { color: var(--accent); }
-    .contact-grid-info h2, .contact-grid-form h2 { color: var(--white); margin: 0.6rem 0 0.8rem; }
-    .contact-grid-info > p.body-md { color: rgba(255,255,255,0.55); margin-bottom: var(--space-m); }
+    .contact-grid-card > * { position: relative; z-index: 1; }
+
+    .bento-map     { grid-column: span 4; display: flex; flex-direction: column; }
+    .bento-info    { grid-column: span 2; display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-s); }
+    .bento-form    { grid-column: span 4; }
+    .bento-connect { grid-column: span 2; display: flex; flex-direction: column; }
+
+    .contact-grid-card .tag { color: var(--accent); }
+    .contact-grid-card h2 { color: var(--white); margin: 0.6rem 0 0.8rem; }
+    .contact-grid-card p.body-md { color: rgba(255,255,255,0.55); }
+    .bento-map > p.body-md { max-width: 520px; margin-bottom: var(--space-m); }
 
     /* world map graphic (Media/world.svg) with a marker pinned on New Delhi */
-    .world-map { position: relative; width: 100%; aspect-ratio: 2000 / 857; margin-bottom: var(--space-m); }
+    .world-map { position: relative; width: 100%; aspect-ratio: 2000 / 857; margin: auto 0; }
     .world-map img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.4; filter: brightness(0) invert(1); }
     .world-map .map-marker {
       position: absolute;
@@ -83,13 +92,51 @@
       .world-map .map-marker .ring { animation: none; }
     }
 
-    .contact-grid-info .info-row { margin-bottom: var(--space-m); }
-    .contact-grid-info .info-row .display-sm { color: var(--white); margin-bottom: 0.4rem; }
-    .contact-grid-info .info-row p.body-md { color: rgba(255,255,255,0.55); margin: 0; }
-    .contact-grid-info .info-row a { color: var(--accent); font-size: 0.95rem; }
-    .contact-grid-info .divider { background: rgba(255,255,255,0.1); }
-    .contact-grid-info .vertical-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .contact-grid-info .vertical-pills a {
+    /* info card: icon rows */
+    .info-row { display: flex; align-items: flex-start; gap: 0.9rem; padding: 0.9rem 0; }
+    .info-row + .info-row { border-top: 1px solid rgba(255,255,255,0.08); }
+    .info-icon {
+      flex: none;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: var(--accent);
+    }
+    .info-icon svg { width: 18px; height: 18px; }
+    .info-row .display-sm { color: var(--white); margin-bottom: 0.25rem; }
+    .info-row p.body-md { margin: 0; font-size: 0.88rem; }
+    .info-row a { color: var(--accent); font-size: 0.92rem; word-break: break-all; }
+
+    /* connect card: social list + pills */
+    .connect-label {
+      font-family: var(--f-display);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin: var(--space-s) 0 0.4rem;
+    }
+    .social-list { display: flex; flex-direction: column; }
+    .social-list a {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.55rem 0;
+      font-family: var(--f-body);
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.2s ease;
+    }
+    .social-list a + a { border-top: 1px solid rgba(255,255,255,0.08); }
+    .social-list a:hover { color: var(--white); }
+    .social-list .info-icon { width: 34px; height: 34px; border-radius: 10px; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .social-list .info-icon svg { width: 16px; height: 16px; }
+    .social-list a:hover .info-icon { background: var(--accent); border-color: var(--accent); color: var(--white); }
+    .social-list .ext { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+
+    .vertical-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+    .vertical-pills a {
       font-size: 0.78rem;
       color: rgba(255,255,255,0.75);
       border: 1px solid rgba(255,255,255,0.15);
@@ -97,29 +144,30 @@
       padding: 0.35rem 0.8rem;
       transition: border-color 0.2s, color 0.2s;
     }
-    .contact-grid-info .vertical-pills a:hover { border-color: var(--accent); color: var(--white); }
+    .vertical-pills a:hover { border-color: var(--accent); color: var(--white); }
 
-    .contact-grid-form .form-group label { color: rgba(255,255,255,0.7); }
-    .contact-grid-form .form-group input,
-    .contact-grid-form .form-group select,
-    .contact-grid-form .form-group textarea {
+    /* form card */
+    .bento-form .form-group label { color: rgba(255,255,255,0.7); }
+    .bento-form .form-group input,
+    .bento-form .form-group select,
+    .bento-form .form-group textarea {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.15);
       color: var(--white);
     }
-    .contact-grid-form .form-group input::placeholder,
-    .contact-grid-form .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
-    .contact-grid-form .form-group select option { color: var(--text); }
-    .contact-grid-form .form-group input:focus,
-    .contact-grid-form .form-group select:focus,
-    .contact-grid-form .form-group textarea:focus {
+    .bento-form .form-group input::placeholder,
+    .bento-form .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .bento-form .form-group select option { color: var(--text); }
+    .bento-form .form-group input:focus,
+    .bento-form .form-group select:focus,
+    .bento-form .form-group textarea:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(0,87,168,0.25);
     }
 
-    @media (max-width: 900px) {
-      .contact-grid-card { grid-template-columns: 1fr; }
-      .contact-grid-info { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    @media (max-width: 980px) {
+      .contact-bento { grid-template-columns: 1fr; }
+      .bento-map, .bento-info, .bento-form, .bento-connect { grid-column: auto; }
     }
   </style>
 </head>
@@ -140,10 +188,10 @@
 
   <section class="contact-grid-section">
     <div class="container">
-      <div class="contact-grid-card fade-up">
+      <div class="contact-bento">
 
-        <!-- ── INFO ── -->
-        <div class="contact-grid-info">
+        <!-- ── MAP ── -->
+        <div class="contact-grid-card bento-map fade-up">
           <p class="tag">We are here</p>
           <h2 class="display-md">Contact us</h2>
           <p class="body-md">We're always looking for ways to improve our products and services. Reach out and let us know how we can help.</p>
@@ -156,70 +204,55 @@
               <span class="dot"></span>
             </div>
           </div>
+        </div>
 
-          <div class="info-row">
-            <div class="display-sm">Email</div>
-            <a href="mailto:info@abastel.in">info@abastel.in</a>
-          </div>
+        <!-- ── INFO ── -->
+        <div class="contact-grid-card bento-info fade-up">
+          <div>
+            <div class="info-row">
+              <span class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <div>
+                <div class="display-sm">Email</div>
+                <a href="mailto:info@abastel.in">info@abastel.in</a>
+              </div>
+            </div>
 
-          <div class="divider"></div>
+            <div class="info-row">
+              <span class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <div>
+                <div class="display-sm">Registered Office</div>
+                <p class="body-md">Delhi, India</p>
+              </div>
+            </div>
 
-          <div class="info-row">
-            <div class="display-sm">Registered Office</div>
-            <p class="body-md">Delhi, India</p>
-          </div>
+            <div class="info-row">
+              <span class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+              </span>
+              <div>
+                <div class="display-sm">Manufacturing Facility</div>
+                <p class="body-md">Uttar Pradesh, India</p>
+              </div>
+            </div>
 
-          <div class="divider"></div>
-
-          <div class="info-row">
-            <div class="display-sm">Manufacturing Facility</div>
-            <p class="body-md">Uttar Pradesh, India</p>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="info-row" style="margin-bottom: var(--space-s);">
-            <div class="display-sm">Response Time</div>
-            <p class="body-md">We typically respond within 24 hours on business days (Mon–Sat).</p>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="vertical-pills">
-            <a href="../telecom/">Telecom &amp; Fiber</a>
-            <a href="../plastic/">Plastic Granules</a>
-            <a href="../moulds/">Moulds &amp; Machining</a>
-            <a href="../packaging/">Packaging</a>
-            <a href="../aerospace/">Aerospace</a>
-            <a href="../factory-tour/">Factory Tour</a>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="footer-social">
-            <p class="footer-social-label">Connect With Us</p>
-            <div class="social-tiles">
-              <a class="social-tile" href="https://www.linkedin.com/company/abastelllp/" target="_blank" rel="noopener" aria-label="Abastel on LinkedIn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              </a>
-              <a class="social-tile" href="https://www.instagram.com/abastel_llp/" target="_blank" rel="noopener" aria-label="Abastel on Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              </a>
-              <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on Facebook">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              </a>
-              <a class="social-tile" href="#" target="_blank" rel="noopener" aria-label="Abastel on X (Twitter)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
-              </a>
-              <a class="social-tile" href="https://www.youtube.com/@ABASTEL-LLP" target="_blank" rel="noopener" aria-label="Abastel on YouTube">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
-              </a>
+            <div class="info-row">
+              <span class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
+              <div>
+                <div class="display-sm">Response Time</div>
+                <p class="body-md">We typically respond within 24 hours on business days (Mon–Sat).</p>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- ── FORM ── -->
-        <div class="contact-grid-form">
+        <div class="contact-grid-card bento-form fade-up">
           <p class="tag">Send a Message</p>
           <h2 class="display-md">Let's talk</h2>
           <!-- Replace ACTION with your Formspree endpoint: https://formspree.io/f/YOUR_ID -->
@@ -263,6 +296,48 @@
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
           </form>
+        </div>
+
+        <!-- ── CONNECT ── -->
+        <div class="contact-grid-card bento-connect fade-up">
+          <p class="connect-label" style="margin-top:0;">Connect With Us</p>
+          <div class="social-list">
+            <a href="https://www.linkedin.com/company/abastelllp/" target="_blank" rel="noopener" aria-label="Abastel on LinkedIn">
+              <span class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+              LinkedIn
+              <span class="ext">↗</span>
+            </a>
+            <a href="https://www.instagram.com/abastel_llp/" target="_blank" rel="noopener" aria-label="Abastel on Instagram">
+              <span class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+              Instagram
+              <span class="ext">↗</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Abastel on Facebook">
+              <span class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>
+              Facebook
+              <span class="ext">↗</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Abastel on X (Twitter)">
+              <span class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg></span>
+              X (Twitter)
+              <span class="ext">↗</span>
+            </a>
+            <a href="https://www.youtube.com/@ABASTEL-LLP" target="_blank" rel="noopener" aria-label="Abastel on YouTube">
+              <span class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></span>
+              YouTube
+              <span class="ext">↗</span>
+            </a>
+          </div>
+
+          <p class="connect-label">Explore</p>
+          <div class="vertical-pills">
+            <a href="../telecom/">Telecom &amp; Fiber</a>
+            <a href="../plastic/">Plastic Granules</a>
+            <a href="../moulds/">Moulds &amp; Machining</a>
+            <a href="../packaging/">Packaging</a>
+            <a href="../aerospace/">Aerospace</a>
+            <a href="../factory-tour/">Factory Tour</a>
+          </div>
         </div>
 
       </div>
