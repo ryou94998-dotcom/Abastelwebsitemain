@@ -7,6 +7,9 @@
   <meta name="description" content="Take a behind-the-scenes look at Abastel's state-of-the-art manufacturing facility in Delhi — where fiber, plastics, and aerospace components are made." />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
+    /* Videos sit in the masonry exactly like images */
+    .gallery-item video { display: block; width: 100%; height: auto; cursor: zoom-in; }
+
     /* ── LIGHTBOX (click any photo to enlarge, uncropped) — same pattern as telecom.html ── */
     .lightbox {
       display: none;
@@ -20,7 +23,8 @@
       padding: 2rem;
     }
     .lightbox.open { display: flex; }
-    .lightbox img {
+    .lightbox img,
+    .lightbox video {
       max-width: 90vw;
       max-height: 88vh;
       object-fit: contain;
@@ -29,6 +33,7 @@
       cursor: default;
       animation: lbIn 0.25s cubic-bezier(0.4,0,0.2,1);
     }
+    .lightbox video { width: auto; }
     @keyframes lbIn {
       from { opacity: 0; transform: scale(0.93); }
       to   { opacity: 1; transform: scale(1); }
@@ -144,6 +149,112 @@
     </div>
   </section>
 
+  <!-- ── ON THE FLOOR: VIDEO + PHOTO GALLERY ── -->
+  <section style="padding: 0 0 var(--space-xl);">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="tag">On The Floor</p>
+        <h2 class="display-md">Motion, up close.</h2>
+      </div>
+      <div class="gallery-masonry fade-up">
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Machinery in motion on the shop floor">
+            <source src="../Media/Factory/Factory%20videos/IMG_1734.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1734.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Machinery in motion on the shop floor</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Injection moulding press in action">
+            <source src="../Media/Factory/Factory%20videos/IMG_1735.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1735.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Injection moulding press in action</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Production line running">
+            <source src="../Media/Factory/Factory%20videos/IMG_1740.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1740.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Production line running</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Components moving through the line">
+            <source src="../Media/Factory/Factory%20videos/IMG_1742.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1742.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Components moving through the line</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Operators at work on the floor">
+            <source src="../Media/Factory/Factory%20videos/IMG_1744.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1744.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Operators at work on the floor</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Moulding cycle in progress">
+            <source src="../Media/Factory/Factory%20videos/IMG_1745.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1745.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Moulding cycle in progress</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Finished parts coming off the press">
+            <source src="../Media/Factory/Factory%20videos/IMG_1746.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1746.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Finished parts coming off the press</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Close-up of machining in progress">
+            <source src="../Media/Factory/Factory%20videos/IMG_1747.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1747.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Close-up of machining in progress</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="Assembly work on the floor">
+            <source src="../Media/Factory/Factory%20videos/IMG_1749.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1749.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Assembly work on the floor</div>
+        </div>
+        <div class="gallery-item">
+          <video autoplay loop muted playsinline aria-label="A wider look across the plant">
+            <source src="../Media/Factory/Factory%20videos/IMG_1754.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1754.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">A wider look across the plant</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../Media/Factory/Factory%20videos/IMG_1617.JPG" alt="On the factory floor" loading="lazy" />
+          <div class="gallery-caption">On the factory floor</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../Media/Factory/Factory%20videos/IMG_1621.JPG" alt="Inside the plant" loading="lazy" />
+          <div class="gallery-caption">Inside the plant</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../Media/Factory/Factory%20videos/IMG_1625.JPG" alt="Production area" loading="lazy" />
+          <div class="gallery-caption">Production area</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../Media/Factory/Factory%20videos/IMG_1631.JPG" alt="Manufacturing in progress" loading="lazy" />
+          <div class="gallery-caption">Manufacturing in progress</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../Media/Factory/Factory%20videos/IMG_1639.JPG" alt="Shop floor detail" loading="lazy" />
+          <div class="gallery-caption">Shop floor detail</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../Media/Factory/Factory%20videos/IMG_1643.JPG" alt="Facility interior" loading="lazy" />
+          <div class="gallery-caption">Facility interior</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── ZONES ── -->
   <section class="section band">
     <div class="container">
@@ -208,31 +319,58 @@
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lbClose">✕</button>
     <img id="lbImg" src="" alt="" />
+    <video id="lbVideo" controls loop playsinline controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false" style="display:none"></video>
     <div class="lightbox-caption" id="lbCaption"></div>
   </div>
 
   <script src="../js/shared.js"></script>
   <script src="../js/animations.js"></script>
   <script>
-    // Click-to-enlarge lightbox for the factory gallery preview (mirrors telecom.html)
+    // Click-to-enlarge lightbox for photos AND videos (mirrors telecom.html)
     (function () {
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lbImg');
+      const lbVideo = document.getElementById('lbVideo');
       const lbCaption = document.getElementById('lbCaption');
       const lbClose = document.getElementById('lbClose');
       const photos = document.querySelectorAll('.gallery-masonry .gallery-item img');
-      if (!lb || !photos.length) return;
+      const videos = document.querySelectorAll('.gallery-masonry .gallery-item video');
+      if (!lb || (!photos.length && !videos.length)) return;
 
-      const open = (img) => {
+      const captionFor = (el) =>
+        (el.parentElement.querySelector('.gallery-caption') || {}).textContent
+        || el.alt || el.getAttribute('aria-label') || '';
+
+      const openImg = (img) => {
+        lbVideo.pause();
+        lbVideo.style.display = 'none';
+        lbImg.style.display = '';
         lbImg.src = img.currentSrc || img.src;
         lbImg.alt = img.alt || '';
-        const caption = img.parentElement.querySelector('.gallery-caption');
-        lbCaption.textContent = caption ? caption.textContent : (img.alt || '');
+        lbCaption.textContent = captionFor(img);
         lb.classList.add('open');
       };
-      const close = () => lb.classList.remove('open');
+      const openVideo = (vid) => {
+        lbImg.removeAttribute('src');
+        lbImg.style.display = 'none';
+        lbVideo.style.display = '';
+        lbVideo.innerHTML = vid.innerHTML;   // reuse the same <source> tags
+        lbVideo.muted = false;
+        lbVideo.load();
+        lbCaption.textContent = captionFor(vid);
+        lb.classList.add('open');
+        lbVideo.play().catch(() => {});
+      };
+      const close = () => {
+        lb.classList.remove('open');
+        lbVideo.pause();
+      };
 
-      photos.forEach((img) => img.addEventListener('click', () => open(img)));
+      photos.forEach((img) => img.addEventListener('click', () => openImg(img)));
+      videos.forEach((vid) => {
+        vid.addEventListener('click', () => openVideo(vid));
+        vid.addEventListener('contextmenu', (e) => e.preventDefault());
+      });
       lbClose.addEventListener('click', close);
       lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });

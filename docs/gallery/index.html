@@ -35,6 +35,9 @@
     }
     .gallery-placeholder { padding: 4rem 1rem; min-height: 180px; }
 
+    /* Videos sit in the masonry exactly like images */
+    .gallery-item video { display: block; width: 100%; height: auto; cursor: zoom-in; }
+
     /* ── LIGHTBOX (click-to-enlarge, same pattern as telecom.html) ── */
     .lightbox {
       display: none;
@@ -48,7 +51,8 @@
       padding: 2rem;
     }
     .lightbox.open { display: flex; }
-    .lightbox img {
+    .lightbox img,
+    .lightbox video {
       max-width: 90vw;
       max-height: 88vh;
       object-fit: contain;
@@ -57,6 +61,7 @@
       cursor: default;
       animation: lbIn 0.25s cubic-bezier(0.4,0,0.2,1);
     }
+    .lightbox video { width: auto; }
     @keyframes lbIn {
       from { opacity: 0; transform: scale(0.93); }
       to   { opacity: 1; transform: scale(1); }
@@ -125,62 +130,123 @@
       </div>
 
       <div class="gallery-masonry fade-up" id="gallery">
-        <div class="gallery-item" data-cat="telecom">
-          <div class="gallery-placeholder">Fiber Patch Cords — SC/LC</div>
-        </div>
         <div class="gallery-item" data-cat="factory">
           <img src="../Media/Factory/WhatsApp%20Image%202026-06-20%20at%2012.16.58%20AM.jpeg" alt="Abastel factory team group photo on the shop floor" loading="lazy" />
           <div class="gallery-caption">Our Team, Factory Floor</div>
-        </div>
-        <div class="gallery-item" data-cat="plastics">
-          <div class="gallery-placeholder">Injection Moulded Enclosures</div>
-        </div>
-        <div class="gallery-item" data-cat="telecom">
-          <div class="gallery-placeholder">Optical Joint Closure — Dome Type</div>
         </div>
         <div class="gallery-item" data-cat="factory">
           <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.54.30%20PM.jpeg" alt="Wide view of the production floor with finished components staged for dispatch" loading="lazy" />
           <div class="gallery-caption">Production Floor — Staging Area</div>
         </div>
-        <div class="gallery-item" data-cat="aerospace">
-          <div class="gallery-placeholder">Precision Machined Bracket</div>
-        </div>
-        <div class="gallery-item" data-cat="packaging">
-          <div class="gallery-placeholder">Custom Retail Packaging</div>
-        </div>
         <div class="gallery-item" data-cat="factory">
           <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM.jpeg" alt="Workers operating an injection moulding press on the shop floor" loading="lazy" />
           <div class="gallery-caption">Injection Moulding Press</div>
-        </div>
-        <div class="gallery-item" data-cat="telecom">
-          <div class="gallery-placeholder">Fiber Termination Box — 24 Port</div>
-        </div>
-        <div class="gallery-item" data-cat="plastics">
-          <div class="gallery-placeholder">CNC Machining — Aluminium Part</div>
         </div>
         <div class="gallery-item" data-cat="factory">
           <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM%20(1).jpeg" alt="Two injection moulding machines in the moulding press bay" loading="lazy" />
           <div class="gallery-caption">Moulding Press Bay</div>
         </div>
-        <div class="gallery-item" data-cat="packaging">
-          <div class="gallery-placeholder">Corrugated Shipping Boxes</div>
-        </div>
-        <div class="gallery-item" data-cat="aerospace">
-          <div class="gallery-placeholder">Aerospace Sub-Assembly Component</div>
-        </div>
         <div class="gallery-item" data-cat="factory">
           <img src="../Media/Factory/WhatsApp%20Image%202026-06-19%20at%2011.48.31%20PM%20(2).jpeg" alt="Factory floor machinery in the machining and assembly zone" loading="lazy" />
           <div class="gallery-caption">Machining & Assembly Zone</div>
         </div>
-        <div class="gallery-item" data-cat="telecom">
-          <div class="gallery-placeholder">MTP/MPO Fiber Cassette</div>
-        </div>
-        <div class="gallery-item" data-cat="plastics">
-          <div class="gallery-placeholder">Mould Tool — Injection Press</div>
-        </div>
         <div class="gallery-item" data-cat="factory">
           <img src="../Media/Factory/WhatsApp%20Image%202026-06-20%20at%2012.12.59%20AM.jpeg" alt="A bin overflowing with freshly injection-moulded plastic enclosures" loading="lazy" />
           <div class="gallery-caption">Freshly Moulded Components</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Machinery in motion on the shop floor">
+            <source src="../Media/Factory/Factory%20videos/IMG_1734.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1734.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Machinery in motion on the shop floor</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Injection moulding press in action">
+            <source src="../Media/Factory/Factory%20videos/IMG_1735.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1735.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Injection moulding press in action</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Production line running">
+            <source src="../Media/Factory/Factory%20videos/IMG_1740.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1740.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Production line running</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Components moving through the line">
+            <source src="../Media/Factory/Factory%20videos/IMG_1742.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1742.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Components moving through the line</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Operators at work on the floor">
+            <source src="../Media/Factory/Factory%20videos/IMG_1744.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1744.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Operators at work on the floor</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Moulding cycle in progress">
+            <source src="../Media/Factory/Factory%20videos/IMG_1745.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1745.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Moulding cycle in progress</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Finished parts coming off the press">
+            <source src="../Media/Factory/Factory%20videos/IMG_1746.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1746.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Finished parts coming off the press</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Close-up of machining in progress">
+            <source src="../Media/Factory/Factory%20videos/IMG_1747.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1747.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Close-up of machining in progress</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="Assembly work on the floor">
+            <source src="../Media/Factory/Factory%20videos/IMG_1749.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1749.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">Assembly work on the floor</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <video autoplay loop muted playsinline aria-label="A wider look across the plant">
+            <source src="../Media/Factory/Factory%20videos/IMG_1754.webm" type="video/webm" />
+            <source src="../Media/Factory/Factory%20videos/IMG_1754.mp4" type="video/mp4" />
+          </video>
+          <div class="gallery-caption">A wider look across the plant</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <img src="../Media/Factory/Factory%20videos/IMG_1617.JPG" alt="On the factory floor" loading="lazy" />
+          <div class="gallery-caption">On the factory floor</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <img src="../Media/Factory/Factory%20videos/IMG_1621.JPG" alt="Inside the plant" loading="lazy" />
+          <div class="gallery-caption">Inside the plant</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <img src="../Media/Factory/Factory%20videos/IMG_1625.JPG" alt="Production area" loading="lazy" />
+          <div class="gallery-caption">Production area</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <img src="../Media/Factory/Factory%20videos/IMG_1631.JPG" alt="Manufacturing in progress" loading="lazy" />
+          <div class="gallery-caption">Manufacturing in progress</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <img src="../Media/Factory/Factory%20videos/IMG_1639.JPG" alt="Shop floor detail" loading="lazy" />
+          <div class="gallery-caption">Shop floor detail</div>
+        </div>
+        <div class="gallery-item" data-cat="factory">
+          <img src="../Media/Factory/Factory%20videos/IMG_1643.JPG" alt="Facility interior" loading="lazy" />
+          <div class="gallery-caption">Facility interior</div>
         </div>
       </div>
     </div>
@@ -195,7 +261,7 @@
           <h2 class="display-md">Factory photos are live — the rest are on the way.</h2>
         </div>
         <div class="section-body fade-up">
-          <p class="body-md">The <strong>Factory</strong> filter above shows real photos from our Delhi facility. The Telecom & Fiber, Plastic Moulds, Packaging, and Aerospace tiles are still placeholders — to add real product photos, replace each <code>&lt;div class="gallery-placeholder"&gt;</code> with an <code>&lt;img&gt;</code> tag pointing to your image file, following the same pattern used for the factory photos above.</p>
+          <p class="body-md">The <strong>Factory</strong> gallery above shows real photos and video from our Delhi facility. The Telecom & Fiber, Plastic Moulds, Packaging, and Aerospace categories don't have photos yet — to add product photos for one, drop in new <code>&lt;div class="gallery-item" data-cat="…"&gt;</code> blocks with an <code>&lt;img&gt;</code> inside, following the same pattern used for the factory tiles above.</p>
           <div class="divider"></div>
           <p class="body-md">Recommended image size: minimum 800px wide, JPG format for photos. Keep file sizes under 300KB each for fast load times on GitHub Pages.</p>
         </div>
@@ -207,6 +273,7 @@
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lbClose">✕</button>
     <img id="lbImg" src="" alt="" />
+    <video id="lbVideo" controls loop playsinline controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false" style="display:none"></video>
     <div class="lightbox-caption" id="lbCaption"></div>
   </div>
 
@@ -225,25 +292,51 @@
       });
     }
 
-    // Click-to-enlarge lightbox for real photo tiles (mirrors the pattern in telecom.html)
+    // Click-to-enlarge lightbox for photos AND videos (mirrors the pattern in telecom.html)
     (function () {
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lbImg');
+      const lbVideo = document.getElementById('lbVideo');
       const lbCaption = document.getElementById('lbCaption');
       const lbClose = document.getElementById('lbClose');
       const photos = document.querySelectorAll('#gallery .gallery-item img');
-      if (!lb || !photos.length) return;
+      const videos = document.querySelectorAll('#gallery .gallery-item video');
+      if (!lb || (!photos.length && !videos.length)) return;
 
-      const open = (img) => {
+      const captionFor = (el) =>
+        (el.parentElement.querySelector('.gallery-caption') || {}).textContent
+        || el.alt || el.getAttribute('aria-label') || '';
+
+      const openImg = (img) => {
+        lbVideo.pause();
+        lbVideo.style.display = 'none';
+        lbImg.style.display = '';
         lbImg.src = img.currentSrc || img.src;
         lbImg.alt = img.alt || '';
-        const caption = img.parentElement.querySelector('.gallery-caption');
-        lbCaption.textContent = caption ? caption.textContent : (img.alt || '');
+        lbCaption.textContent = captionFor(img);
         lb.classList.add('open');
       };
-      const close = () => lb.classList.remove('open');
+      const openVideo = (vid) => {
+        lbImg.removeAttribute('src');
+        lbImg.style.display = 'none';
+        lbVideo.style.display = '';
+        lbVideo.innerHTML = vid.innerHTML;   // reuse the same <source> tags
+        lbVideo.muted = false;
+        lbVideo.load();
+        lbCaption.textContent = captionFor(vid);
+        lb.classList.add('open');
+        lbVideo.play().catch(() => {});
+      };
+      const close = () => {
+        lb.classList.remove('open');
+        lbVideo.pause();
+      };
 
-      photos.forEach((img) => img.addEventListener('click', () => open(img)));
+      photos.forEach((img) => img.addEventListener('click', () => openImg(img)));
+      videos.forEach((vid) => {
+        vid.addEventListener('click', () => openVideo(vid));
+        vid.addEventListener('contextmenu', (e) => e.preventDefault());
+      });
       lbClose.addEventListener('click', close);
       lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
